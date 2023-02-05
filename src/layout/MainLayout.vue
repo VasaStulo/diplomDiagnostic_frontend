@@ -1,35 +1,117 @@
 <template>
-  <v-app>
-      <v-list>
-        <v-list-item
-            v-for="item in menuItems"
-            :key="item.title"
-            :to="item.link">
-          <v-list-item-content>{{ item.title }}</v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-spacer></v-spacer>
-    <main>
-      <router-view></router-view>
-    </main>
-  </v-app>
+  <div>
+    <header class="header">
+      <img class="logo_image" src="../assets/img/logo_b.svg"/>
+      <router-link class="menu_item" v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}</router-link>
+      <div class="change_el" v-if="!isAuth">
+        <router-link class="menu_item_left" to="/enter">Вход</router-link>
+        <v-btn
+            class="btn_border"
+            text
+            @click="toRegister"
+        >
+          Регистрация
+        </v-btn>
+      </div>
+      <div class="change_el" v-if="isAuth">
+        <a class="menu_item_left" href="/exit">Выход</a>
+        <v-avatar class="ava" color="indigo">
+          <v-icon dark>
+            mdi-account-circle
+          </v-icon>
+        </v-avatar>
+      </div>
+    </header>
+    <v-footer padless>
+      <v-row
+          justify="center"
+          no-gutters
+      >
+        <v-col
+            class="py-4 text-center white--text"
+            cols="12"
+        > Все права защищены © Тьюторский центр 2020-2023<br>
+          Developed by E. Tikhomirov, V.Stulova
+        </v-col>
+      </v-row>
+    </v-footer>
+  </div>
+
 </template>
 
-<!--video menu-->
+
 <script>
+import {mapGetters, mapMutations} from "vuex";
+
 export default {
+  name: 'MainLayout',
+  //чтобы получать геттеры нам нужны компьютет свойства
+  computed:{
+    ...mapGetters(['isAuth']),
+  },
+  methods: {
+    ...mapMutations(['CHANGE_AUTH']),
+    toRegister(){
+      // this.CHANGE_AUTH();
+      this.$router.push('/enter');
+    }
+  },
+
   data(){
     return{
+
       menuItems: [
-          //todo передвижение по ссылке, а не по простыне
+        //todo передвижение по ссылке, а не по простыне
         {title: 'Главная', link: '/'},
-        {title: 'О проекте'},
-        {title: 'Услуги'},
-        {title: 'Контакты'},
-        {title: 'Диагностика', link: '/diagnostic'},
-        {title: 'Вход', link: '/enter'}
+        {title: 'О проекте', link: '/'},
+        {title: 'Услуги', link: '/'},
+        {title: 'Контакты', link: '/'},
+        {title: 'Диагностика', link: '/diagnostic'}
       ]
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+@import '../scss/colors.scss';
+.header{
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.logo_image{
+  margin-top: 30px;
+  margin-right: 42px;
+}
+.menu_item {
+  margin-top: 30px;
+  margin-right: 42px;
+  text-transform: uppercase;
+
+}
+.menu_item_left{
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+.btn_border{
+  border: 1px solid #F7DC79;
+  margin-left: 42px;
+}
+.change_el{
+  margin-top: 30px;
+}
+.ava{
+  margin-left: 42px;
+}
+.v-footer{
+  background: map-get($blue, 'dark');
+  ////прибиваем к низу футер
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+</style>

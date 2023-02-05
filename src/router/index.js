@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LayoutView from '../layout/MainLayout.vue'
-import ComponentsView from '../views/ComponentsView.vue'
+import HelloWorld from "@/components/HelloWorld";
+import EnterComponent from "@/components/EnterComponent";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'layout',
-    component: LayoutView
+    name: 'HelloWorld',
+    component: HelloWorld
   },
   {
-    path: '/components',
-    name: 'components',
-    component: ComponentsView
-  }
+    path: '/enter',
+    name: 'EnterComponent',
+    component: EnterComponent
+  },
 ]
 
 const router = new VueRouter({

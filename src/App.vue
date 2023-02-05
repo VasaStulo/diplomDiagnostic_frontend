@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-<!--    <v-app>
+    <v-app>
+    <MainLayout/>
+    <!--    <v-app>
       <v-app-bar app></v-app-bar>
       <v-main>
         <v-container>
@@ -9,10 +11,19 @@
       </v-main>
     </v-app>-->
     <router-view/>
+    </v-app>
   </div>
 </template>
 
+<script>
+import MainLayout from "@/layout/MainLayout";
+export default {
+  components: {MainLayout}
+}
+</script>
+
 <style lang="scss">
+@import "./scss/null_style";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

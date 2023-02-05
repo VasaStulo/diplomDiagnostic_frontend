@@ -1,9 +1,9 @@
 <template>
-  <h1>HELLO </h1>
+  <h1>ENTER </h1>
 </template>
 
 <script>
   export default {
-    name: 'HelloWorld',
+    name: 'EnterComponent',
   }
 </script>
