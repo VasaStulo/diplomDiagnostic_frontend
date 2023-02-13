@@ -4,13 +4,14 @@
       <div class="auth">
           <h2>Добро <br/>пожаловать!</h2>
         <div class="btn_enter">
-        <ButtonText :text="'Вход'"/>
-          <ButtonText :text="'Регистрация'"/>
+        <ButtonText text="Вход"/>
+          <ButtonText text="Регистрация"/>
         </div>
-        <div>
-        <InputText :placeholder="'E-mail'" />
-        <InputText :placeholder="'Password'" />
+        <div class="inputs">
+        <InputText @input="CHANGE_VALUE_BY_FIELD({field: 'email', value: $event})" placeholder="E-mail" :value="form.email"/>
+        <InputText @input="CHANGE_VALUE_BY_FIELD({field: 'password', value: $event})" placeholder="Password" :value="form.password"/>
         </div>
+        <ButtonMain text="Войти в аккаунт"/>
       </div>
       <img class="right_image" src="../assets/img/hands.png"/>
     </div>
@@ -21,9 +22,30 @@
 <script>
   import InputText from "@/components/InputText";
   import ButtonText from "@/components/ButtonText";
+  import ButtonMain from "@/components/ButtonMain";
+  import {mapMutations, mapState} from "vuex";
   export default {
     name: 'EnterComponent',
-    components: {ButtonText, InputText},
+    components: {ButtonMain, ButtonText, InputText},
+
+    props: {
+      sizeW: {
+        type: String,
+        default: 'M'
+      },
+    },
+    computed: {
+      ...mapState('auth',['form']),
+      getClasses: function () {
+        return [
+          'main-input',
+          `sizeW-${this.sizeW}`
+        ];
+      },
+    },
+    methods:{
+      ...mapMutations('auth',['CHANGE_VALUE_BY_FIELD']),
+    }
   }
 </script>
 
@@ -41,16 +63,20 @@
 }
 
 .right_image{
-  max-width: 100%;
-  border-radius: 0 0;
-}
-
-.auth{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 20px 20px 0;
 }
 
 h2{
   font-weight: 500;
   font-size: 36px;
 }
+
+.inputs {
+  padding: 30px
+}
+
 
 </style>
