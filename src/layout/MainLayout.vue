@@ -1,17 +1,11 @@
 <template>
   <div>
     <header class="header">
-      <img class="logo_image" src="../assets/img/logo_b.svg"/>
+      <img class="logo_image" src="../assets/img/logo_w.svg"/>
       <router-link class="menu_item" v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}</router-link>
       <div class="change_el" v-if="!isAuth">
-        <router-link class="menu_item_left" to="/enter">Вход</router-link>
-        <v-btn
-            class="btn_border"
-            text
-            @click="toRegister"
-        >
-          Регистрация
-        </v-btn>
+        <router-link class="menu_item_left" to="/enter" @click="toAuth">Вход</router-link>
+        <ButtonMain class="ml-10" type="secondary" text="РЕГИСТРАЦИЯ"/>
       </div>
       <div class="change_el" v-if="isAuth">
         <a class="menu_item_left" href="/exit">Выход</a>
@@ -42,9 +36,13 @@
 
 <script>
 import {mapGetters, mapMutations} from "vuex";
-
+import ButtonMain from "@/components/ButtonMain";
 export default {
   name: 'MainLayout',
+  //РЕГИСТРАЦИЯ КОМПОНЕНТА
+  components:{
+    ButtonMain
+  },
   //чтобы получать геттеры нам нужны компьютет свойства
   computed:{
     ...mapGetters(['isAuth']),
@@ -54,6 +52,10 @@ export default {
     toRegister(){
       // this.CHANGE_AUTH();
       this.$router.push('/enter');
+    },
+    toAuth(){
+      // this.CHANGE_AUTH();
+      this.$router.push('/login');
     }
   },
 
@@ -76,11 +78,19 @@ export default {
 <style scoped lang="scss">
 @import '../scss/colors.scss';
 .header{
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  a{
+    color: #fff;
+    z-index: 999
+  }
 }
 .logo_image{
   margin-top: 30px;
@@ -102,6 +112,7 @@ export default {
 }
 .change_el{
   margin-top: 30px;
+  margin-left: 190px;
 }
 .ava{
   margin-left: 42px;
