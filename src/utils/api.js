@@ -1,6 +1,8 @@
 import axios from 'axios';
+import checkToken from "@/utils/checkToken";
 
 class Api{
+
         constructor(baseURL){
             this.axios = axios.create({
                 baseURL,
@@ -8,8 +10,9 @@ class Api{
         }
 
         async get(url, params) {
+
             try {
-                const res = await this.axios.get(url, {params});
+                const res = await this.axios.get(url, {params, headers: {Authorization: checkToken()}});
                 return res;
             } catch (e) {
                 console.log('e', e);
@@ -19,7 +22,7 @@ class Api{
 
         async post(url, body) {
             try {
-                const res = await this.axios.post(url, body);
+                const res = await this.axios.post(url, body, {headers: {Authorization: 123}});
                 return res;
             } catch (e) {
                 console.log('e', e);
@@ -28,4 +31,4 @@ class Api{
         }
 }
 
-export default new Api('https://jsonplaceholder.typicode.com')
+export default new Api('http://localhost:8000')
