@@ -9,30 +9,46 @@
       </div>
      <ButtonMain class="offer-btn" text="ПРОЙТИ ДИАГНОСТИКУ"/>
     </div>
+
+
     <div class="about_section">
-      <div class="about">
-        <p class="title_about">О ПРОЕКТЕ</p>
-        <p class="text_about">Тьюторский центр обеспечивает сопровождение непрерывного педагогического<br/> образования. Отправной точкой сопровождения является осознание педагогом<br/> своих профессиональных потребностей. Данный ресурс позволяет педагогу сделать<br/> шаг в профессиональном развитии. </p>
-      </div>
-        <div class="images">
-          <v-img
-              class="ellipse_big"
-            src="../assets/img/ellipse_big.png"
-          ></v-img>
-          <v-img
-              class="ellipse_med"
-              src="../assets/img/ellipse_med.png"
-          ></v-img>
-          <v-img
-              class="ellipse_med_two"
-              src="../assets/img/ellipse_med.png"
-          ></v-img>
-          <v-img
-              class="ellipse_teacher_one"
-              src="../assets/img/ellipse_teacher_one.png"
-          ></v-img>
+      <p class="title_about">О ПРОЕКТЕ</p>
+      <p class="text_about">Тьюторский центр обеспечивает сопровождение непрерывного педагогического<br/> образования. Отправной точкой сопровождения является осознание педагогом<br/> своих профессиональных потребностей. Данный ресурс позволяет педагогу сделать<br/> шаг в профессиональном развитии. </p>
+      <div class="about_section-images">
+        <v-img
+            class="ellipse_big"
+          src="../assets/img/ellipse_big.png"
+        ></v-img>
+        <v-img
+            class="ellipse_med"
+            src="../assets/img/ellipse_med.png"
+        ></v-img>
+        <v-img
+            class="ellipse_med_two"
+            src="../assets/img/ellipse_med.png"
+        ></v-img>
+        <v-img
+            class="about_section-teacher ellipse_teacher_one"
+            src="../assets/img/ellipse_teacher_one.png"
+        ></v-img>
+        <v-img
+            class="about_section-teacher ellipse_teacher_two"
+            src="../assets/img/ellipse_teacher_two.png"
+        ></v-img>
+        <v-img
+            class="about_section-teacher ellipse_teacher_three"
+            src="../assets/img/ellipse_teacher_three.png"
+        ></v-img>
+    </div>
+    </div>
+
+    <div class="services_section">
+      <div class="service">
+        <p class="title_about">УСЛУГИ</p>
+        <p class="text_about">Тьюторский центр оказывает следующие услуги</p>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -78,22 +94,25 @@
 }
 
 .about_section{
+  padding-top: 43px;
   height: 80vh;
   position: relative;
+  &-teacher{
+    position: absolute;
+  }
+  &-images{
+    //z-index: -1; TODO: разобраться почему не работает
+    position:absolute;
+    top:0;
+  }
 }
 
 .title_about{
-  margin-top: 43px;
   font-size: 36px !important;
 }
 
-.images{
-  position:absolute;
-  top:0;
-}
-
 .ellipse_big{
- max-width: 85%;
+  max-width: 85%;
   position: relative;
   float: right;
   left:1300px;
@@ -115,9 +134,23 @@
 }
 
 .ellipse_teacher_one{
-  position: relative;
+  width: 186px;
+  height: 186px;
   left: 815px;
-  top:270px;
+  top: 260px;
+}
+
+.ellipse_teacher_two{
+  width: 126px;
+  height: 126px;
+  left: 423px;
+  top: 300px;
+}
+
+.ellipse_teacher_three{
+  width: 180px;
+  height: 180px;
+  left: 50px;
 }
 
 </style>

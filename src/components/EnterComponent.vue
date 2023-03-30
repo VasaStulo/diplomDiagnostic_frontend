@@ -33,6 +33,7 @@
       },
     },
     computed: {
+      //MAP ФУНКЦИЯ ОБЛЕГЧАЕТ ДОСТУП К СТОРУ
       ...mapState('auth',['form']),
       getClasses: function () {
         return [

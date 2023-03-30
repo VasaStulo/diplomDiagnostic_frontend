@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <header class="header">
       <img class="logo_image" src="../assets/img/logo_w.svg"/>
       <router-link class="menu_item" v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}</router-link>
@@ -16,6 +16,9 @@
         </v-avatar>
       </div>
     </header>
+    <main class="main">
+      <router-view/>
+    </main>
     <v-footer padless>
       <v-row
           justify="center"
@@ -25,7 +28,7 @@
             class="py-4 text-center white--text"
             cols="12"
         > Все права защищены © Тьюторский центр 2020-2023<br>
-          Developed by E. Tikhomirov, V.Stulova
+          Developed by E. Tikhomirov, V. Batogova
         </v-col>
       </v-row>
     </v-footer>
@@ -77,6 +80,16 @@ export default {
 
 <style scoped lang="scss">
 @import '../scss/colors.scss';
+.main{
+  flex: 1 0 auto;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .header{
   margin-top: 10px;
   display: flex;
@@ -85,7 +98,6 @@ export default {
   justify-content: center;
   position: absolute;
   width: 100%;
-  position: absolute;
   top: 0;
   a{
     color: #fff;
@@ -119,10 +131,6 @@ export default {
 }
 .v-footer{
   background: map-get($blue, 'dark');
-  ////прибиваем к низу футер
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  flex: 0 0 auto;
 }
 </style>

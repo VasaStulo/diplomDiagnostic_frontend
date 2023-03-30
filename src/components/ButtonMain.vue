@@ -33,7 +33,7 @@ export default {
 @import '../scss/colors.scss';
 .btn-main{
   font-weight: 700  !important;
-  padding: 15px 15px !important;
+  padding: 20px 20px !important;
   border-radius: 10px;
   &.type{
     &-primary{
