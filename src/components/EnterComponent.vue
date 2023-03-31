@@ -2,7 +2,7 @@
     <div class="wrapper">
       <div class="window_auth">
         <div class="auth">
-            <h2>Добро <br/>пожаловать!</h2>
+            <h2 class="title">Добро <br/>пожаловать!</h2>
           <div class="btn_enter">
           <ButtonText text="Вход"/>
             <ButtonText text="Регистрация"/>
@@ -50,35 +50,64 @@
 </script>
 
 <style scoped lang="scss">
-.wrapper{
-  padding: 140px 500px 80px 500px;
-  background-image: url("../assets/img/hands.png");
-  background-position: center;
-  background-size: cover;
+@media screen and (max-width: 1920px) {
+  .wrapper {
+    padding: 140px 500px 80px 500px;
+    background-image: url("../assets/img/hands.png");
+    background-position: center;
+    background-size: cover;
+  }
+  .inputs {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .wrapper {
+    padding: 210px 400px 80px 400px;
+    background-image: url("../assets/img/hands.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .inputs {
+    padding: 20px 40px 0 40px;
+  }
 }
 
-.window_auth{
-  background-color: white;
-  height: 60vh;
-  border-radius: 20px;
-  box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.15);
-}
+@media screen and (max-width: 1100px) {
+  .wrapper {
+    padding: 210px 300px 80px 300px;
+    background-image: url("../assets/img/hands.png");
+    background-position: center;
+    background-size: cover;
+  }
 
-.right_image{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0 20px 20px 0;
+  .inputs {
+    padding: 20px 40px 0 40px;
+  }
 }
+  .window_auth {
+    background-color: white;
+    height: 60vh;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.15);
+  }
 
-h2{
-  font-weight: 500;
-  font-size: 36px;
-}
+  .right_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 20px 20px 0;
+  }
 
-.inputs {
-  padding: 30px
-}
+  .title {
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 36px !important;
+  }
+
+
 
 
 </style>
