@@ -45,7 +45,34 @@
     <div class="services_section">
       <div class="service">
         <p class="title_about">УСЛУГИ</p>
-        <p class="text_about">Тьюторский центр оказывает следующие услуги</p>
+        <p class="text_about_med">Тьюторский центр оказывает следующие услуги</p>
+        <hr class="hr_serv"/>
+        <div class="services">
+          <div v-for="(item, index) in servicesItems" :key="item.src" class="service_item">
+            <img
+                class="icons_service"
+                :src="require(`../assets/img/icons_service/icon_${index+1}.svg`)"
+            >
+            <p class="text_serv">
+            {{item.title}}
+              <p/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <div class="content_contact">
+      <p class="title_contacts">КОНТАКТЫ</p>
+      <hr class="hr_serv"/>
+      <hr class="hr_contacts"/>
+      <div class="contact_text">
+        <p class="text_contact">Руководитель проекта: Тихомирова Ольга Вячеславовна</p>
+        <p class="text_contact"> Написать на почту:
+          <a class="text_contact" href="mailto:ask@tutor-in@yandex.ru"> tutor-in@yandex.ru </a>
+        </p>
+        <ButtonMain class="btn_contact" text="ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ К ТЬЮТОРУ"/>
+      </div>
       </div>
     </div>
 
@@ -56,6 +83,27 @@
   import ButtonMain from "@/components/ButtonMain";
   export default {
     name: 'MainPage',
+    data: () => ({servicesItems:
+          [
+              {
+                title: 'Конструирование индивидуальных образовательных маршрутов педагогов на основе данных диагностики профессиональной компетентности'
+              },
+            {
+
+                title: 'Поддержка профессиональных обучающихся сообществ учителей'},
+          {
+
+                title: 'Навигация по образовательному пространству профессионального педагогического образования'},
+          {
+
+                title: 'Сопровождение горизонтального обучения учителей'},
+          {
+
+                title: 'Создание информационных, методических и образовательных ресурсов для самообразования учителей'},
+           {
+
+                title: 'Подготовка и сопровождение муниципальных тьюторских команд профессионального развития педагога'},
+          ]}),
     components: {ButtonMain},
   }
 </script>
@@ -70,6 +118,7 @@
   flex-direction: column;
   padding: 0 120px;
   align-items: flex-end;
+
 }
 
 .offer_main_text{
@@ -87,16 +136,23 @@
   color: #ffffff;
   text-align: right;
 }
-.hr{
-  width: 300px;
-  background-color: red;
-  height: 40px;
+.hr_serv{
+  border: 2px solid map-get($yellow,'base');
+  margin: 0 38vw 30px;
+  text-align: center;
+}
+
+.hr_contacts{
+  border: 2px solid map-get($yellow,'base');
+  margin: 0 40vw 30px;
+  text-align: center;
 }
 
 .about_section{
   padding-top: 43px;
-  height: 80vh;
+  height: 70vh;
   position: relative;
+  text-align: center;
   &-teacher{
     position: absolute;
   }
@@ -108,7 +164,9 @@
 }
 
 .title_about{
+  text-align: center;
   font-size: 36px !important;
+  font-weight: 500;
 }
 
 .ellipse_big{
@@ -153,4 +211,73 @@
   left: 50px;
 }
 
+.text_about_med{
+  font-size: 20px !important;
+  font-weight: 500;
+  text-align: center;
+}
+
+.services{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 80px;
+  height: 300px;
+  padding-right: 122px;
+  padding-left: 122px;
+}
+
+.icons_service{
+  width: 60px;
+  height: 60px;
+
+}
+
+.service{
+  display: flex;
+  flex-direction: column;
+}
+
+.service_item{
+  display: flex;
+}
+
+.text_serv{
+  margin-left: 20px;
+}
+
+
+.contact_text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contacts{
+  margin-top: 50px;
+  background-image: url(../assets/img/hand_phone.svg);
+  height: 60vh;
+  background-size: cover;
+}
+
+.title_contacts{
+  text-align: center;
+  font-size: 36px !important;
+  color: map-get($yellow,'base');
+  font-weight: 500;
+}
+
+.text_contact{
+  font-size: 20px !important;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+}
+
+.content_contact{
+  padding-top:74px ;
+}
+
+.btn_contact{
+  text-align: center;
+}
 </style>

@@ -8,8 +8,12 @@ export default {
     async toLogin({state, commit}){
         try{
             const {email, password} = state.form;
-            const {data} = await api.post('user/login', {email, password});
-            // const data = {access_token: '123', refresh_token: '321', refreshIn: 3000};
+            //деструктуризация
+            const {data, status} = await api.post('user/login', {email, password});
+            if (!data?.data?.access || status !== 200 ){
+                throw new Error("Ошибка при логине!")
+            }
+            commit('CHANGE_AUTH', null, { root: true })
             localStorage.setItem('access_token', data?.data?.access);
             localStorage.setItem('refresh_token', data?.data?.refresh);
             const a = jwtDecode(data?.data?.access);

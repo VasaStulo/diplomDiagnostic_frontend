@@ -1,15 +1,20 @@
 <template>
   <div class="wrapper">
     <header class="header">
-      <img class="logo_image" src="../assets/img/logo_w.svg"/>
-      <router-link class="menu_item" v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}</router-link>
+      <img v-if="!isAuth" class="logo_image" src="../assets/img/logo_w.svg"/>
+      <img v-else class="logo_image" src="../assets/img/logo_b.svg"/>
+      <router-link
+          :style="isAuth ? 'color: #000F24' : 'color: #fff'"
+          class="menu_item"
+          v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}
+      </router-link>
       <div class="change_el" v-if="!isAuth">
         <router-link class="menu_item_left" to="/enter" @click="toAuth">Вход</router-link>
         <ButtonMain class="ml-10" type="secondary" text="РЕГИСТРАЦИЯ"/>
       </div>
       <div class="change_el" v-if="isAuth">
-        <a class="menu_item_left" href="/exit">Выход</a>
-        <v-avatar class="ava" color="indigo">
+        <a class="menu_item_left"  :style="isAuth ? 'color: #000F24' : 'color: #fff'" href="/exit">Выход</a>
+        <v-avatar class="ava" color="#000F24">
           <v-icon dark>
             mdi-account-circle
           </v-icon>
@@ -88,6 +93,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: #F0F0F0;
 }
 
 .header{
@@ -99,10 +105,6 @@ export default {
   position: absolute;
   width: 100%;
   top: 0;
-  a{
-    color: #fff;
-    z-index: 999
-  }
 }
 .logo_image{
   margin-top: 30px;
@@ -117,6 +119,7 @@ export default {
 .menu_item_left{
   margin-top: 30px;
   text-transform: uppercase;
+  color: #fff;
 }
 .btn_border{
   border: 1px solid #F7DC79;
