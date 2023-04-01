@@ -58,7 +58,7 @@
     background-size: cover;
   }
   .inputs {
-    padding: 30px;
+    padding: 20px;
   }
 }
 @media screen and (max-width: 1440px) {
@@ -76,7 +76,7 @@
 
 @media screen and (max-width: 1100px) {
   .wrapper {
-    padding: 210px 300px 80px 300px;
+    padding: 210px 300px 40px 300px;
     background-image: url("../assets/img/hands.png");
     background-position: center;
     background-size: cover;
