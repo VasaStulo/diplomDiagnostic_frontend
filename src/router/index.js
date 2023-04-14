@@ -4,6 +4,7 @@ import MainPage from "@/components/MainPage";
 import EnterComponent from "@/components/EnterComponent";
 import LoginUser from "@/components/LoginUser";
 import UserProfilePage from "@/components/UserProfilePage";
+import DescriptionDiagnosticPage from "@/components/DescriptionDiagnosticPage";
 
 
 Vue.use(VueRouter)
@@ -29,6 +30,11 @@ const routes = [
     name: 'UserProfilePage',
     component: UserProfilePage
   },
+  {
+    path: '/diagnostic',
+    name: 'DescriptionDiagnosticPage',
+    component: DescriptionDiagnosticPage
+  }
 
 ]
 

@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <header class="header">
-      <img v-if="!isAuth" class="logo_image" src="../assets/img/logo_w.svg"/>
+      <img v-if="['/', '/enter'].includes($router.currentRoute.path)" class="logo_image" src="../assets/img/logo_w.svg"/>
       <img v-else class="logo_image" src="../assets/img/logo_b.svg"/>
       <router-link
-          :style="isAuth ? 'color: #000F24' : 'color: #fff'"
+          :style="['/', '/enter'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
           class="menu_item"
           v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}
       </router-link>
@@ -13,9 +13,15 @@
         <ButtonMain class="ml-10" type="secondary" text="РЕГИСТРАЦИЯ"/>
       </div>
       <div class="change_el" v-if="isAuth">
-        <a class="menu_item_left"  :style="isAuth ? 'color: #000F24' : 'color: #fff'" href="/exit">Выход</a>
-        <v-avatar class="ava" color="#000F24">
-          <v-icon dark>
+        <a class="menu_item_left"  :style="!['/', '/enter'].includes($router.currentRoute.path)
+        ? 'color: #000F24'
+        : 'color: #fff'"
+        @click="$router.push('/')"
+        >
+          Выход
+        </a>
+        <v-avatar class="ava" :color="['/', '/enter'].includes($router.currentRoute.path) ? '#fff' : '#000F24'">
+          <v-icon :dark="!['/', '/enter'].includes($router.currentRoute.path)">
             mdi-account-circle
           </v-icon>
         </v-avatar>

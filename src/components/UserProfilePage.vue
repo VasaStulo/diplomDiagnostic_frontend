@@ -45,6 +45,7 @@ export default {
   name: 'UserProfilePage',
   computed: {
     ...mapState('user',['user']),
+    // ...mapACtions('diagnostics',['getQuestions']),
 
 },
   data: () => ({
@@ -60,7 +61,7 @@ export default {
             item: 'Поддержка'
           },
         ],
-      })
+      }),
 }
 </script>
 
@@ -73,9 +74,7 @@ export default {
   color: #070034;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-
 }
-
 
 .window_profile {
   margin-top: 135px;
@@ -130,5 +129,13 @@ export default {
   text-align: left;
 }
 
+.result{
+  margin-top: 135px;
+}
+
+.title_res{
+  font-size: 36px;
+  font-weight: 500;
+}
 
 </style>
