@@ -9,8 +9,12 @@
           v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}
       </router-link>
       <div class="change_el" v-if="!isAuth">
-        <router-link class="menu_item_left" to="/enter" @click="toAuth">Вход</router-link>
-        <ButtonMain class="ml-10" type="secondary" text="РЕГИСТРАЦИЯ"/>
+        <router-link
+            :style="['/', '/enter'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
+            class="menu_item_left"
+            to="/enter"
+            @click="toAuth">Вход</router-link>
+        <ButtonMain class="ml-10" :type="['/', '/enter'].includes($router.currentRoute.path) ? 'secondary' : 'second'" text="РЕГИСТРАЦИЯ"/>
       </div>
       <div class="change_el" v-if="isAuth">
         <a class="menu_item_left"  :style="!['/', '/enter'].includes($router.currentRoute.path)

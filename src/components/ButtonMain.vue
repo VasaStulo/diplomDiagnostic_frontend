@@ -45,6 +45,11 @@ export default {
       border: 1px map-get($yellow, 'base') solid ;
       color: white;
     }
+    &-second{
+      background: transparent !important;
+      border: 1px map-get($blue,'bright') solid ;
+      color: map-get($blue,'bright') !important;;
+    }
   }
 }
 </style>
