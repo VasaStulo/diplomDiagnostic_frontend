@@ -13,7 +13,7 @@ class Api{
 
             try {
 
-                const res = await this.axios.get(url, {params, headers: {Authorization: checkToken()}});
+                const res = await this.axios.get(url, {...params, headers: {Authorization:`Bearer ${checkToken()}` }});
                 return res;
             } catch (e) {
                 console.log('e', e);

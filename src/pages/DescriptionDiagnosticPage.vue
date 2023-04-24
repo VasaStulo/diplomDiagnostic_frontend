@@ -9,7 +9,7 @@
           <p class="text_diag">{{titleItems[1]}}</p>
           <h1 class="title_diag">Что делать после</h1>
           <p class="text_diag">{{titleItems[2]}}</p>
-          <ButtonMain class="btn_start" text="ПЕРЕЙТИ К ДИАГНОСТИКЕ"/>
+          <ButtonMain class="btn_start" @click="$router.push('/diagnostic/selection')" text="ПЕРЕЙТИ К ДИАГНОСТИКЕ"/>
         </div>
       </div>
     </div>

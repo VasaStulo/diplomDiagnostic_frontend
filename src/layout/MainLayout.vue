@@ -86,7 +86,7 @@ export default {
         {title: 'О проекте', link: '/'},
         {title: 'Услуги', link: '/'},
         {title: 'Контакты', link: '/'},
-        {title: 'Диагностика', link: '/diagnostic'}
+        {title: 'Диагностика', link: '/diagnostic-preview'}
       ]
     }
   }

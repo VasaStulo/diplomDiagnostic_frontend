@@ -1,21 +1,18 @@
 import api from "@/utils/api";
-import router from "@/router";
 
 export default {
-    async toLogin({state}){
+//метод получения результатов пользователя, срабатывает при входе в профиль
+    async getResults({commit}){
         try{
-            const {email, password} = state.form;
-            const {data} = await api.post('user/login', {email, password});
-            // const data = {access_token: '123', refresh_token: '321', refreshIn: 3000};
-            localStorage.setItem('access_token', data?.data?.access);
-            localStorage.setItem('refresh_token', data?.data?.refresh);
-            // перенаправляем на страницу профиля
-            await router.push('/test')
+            //возвращает промис, а в нем объект
+            const {data} = await api.get('diagnostic/results');
+            commit('CHANGE_VALUE_RESULTS',{standard: data.data.standard,
+                competence: data.data.competence,
+                dppsh:data.data.dppsh} )
+
         }
         catch (e){
             console.log(e)
         }
-
-
     }
 }

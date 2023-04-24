@@ -7,7 +7,7 @@
       <div>
         <p class="offer_second_text">Для того, чтобы пройти тестирование и иметь возможность<br/> просматривать результаты пройденной диагностики,<br/> необходимо зарегистрироваться на данной платформе. Это<br/> займет не больше минуты. </p>
       </div>
-     <ButtonMain class="offer-btn" text="ПРОЙТИ ДИАГНОСТИКУ"/>
+     <ButtonMain class="offer-btn" text="ПРОЙТИ ДИАГНОСТИКУ" @click="$router.push('/enter')"/>
     </div>
 
 
@@ -108,7 +108,7 @@
   }
 </script>
 <style scoped lang="scss">
-@import '../scss/colors.scss';
+@import '../scss/colors';
 .offer{
   background-image: url("../assets/img/offer.png");
   background-size: cover;

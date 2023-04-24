@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MainPage from "@/components/MainPage";
+import MainPage from "@/pages/MainPage";
 import EnterComponent from "@/components/EnterComponent";
 import LoginUser from "@/components/LoginUser";
-import UserProfilePage from "@/components/UserProfilePage";
-import DescriptionDiagnosticPage from "@/components/DescriptionDiagnosticPage";
+import UserProfilePage from "@/pages/UserProfilePage";
+import DescriptionDiagnosticPage from "@/pages/DescriptionDiagnosticPage";
+import SelectionDiagnosticPage from "@/pages/SelectionDiagnosticPage";
+import MainDiagnosticPage from "@/pages/MainDiagnosticPage";
 
 
 Vue.use(VueRouter)
@@ -31,11 +33,19 @@ const routes = [
     component: UserProfilePage
   },
   {
-    path: '/diagnostic',
+    path: '/diagnostic-preview',
     name: 'DescriptionDiagnosticPage',
     component: DescriptionDiagnosticPage
-  }
-
+  },
+  {
+    path: '/diagnostic/selection',
+    name: 'SelectionDiagnosticPage',
+    component: SelectionDiagnosticPage,
+  },
+  {
+    path: '/diagnostic/:type',
+    component: MainDiagnosticPage,
+  },
 ]
 
 const router = new VueRouter({

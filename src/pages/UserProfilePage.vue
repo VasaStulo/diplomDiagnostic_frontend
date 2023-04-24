@@ -7,7 +7,7 @@
               class="ava"
               src="../assets/img/ava.svg"
           >
-          <p class="name">{{user.name.split(' ')[0]}} {{user.name.split(' ')[1]}}</p>
+          <p class="name">{{user && user.name.split(' ')[0]}} {{user && user.name.split(' ')[1]}}</p>
         </div>
         <div class="profile_text">
           <div v-for="(item) in menuItems" :key="item.item">
@@ -19,13 +19,13 @@
       </div>
       <div class="window_data">
           <p class="text_blue_w">
-            <b>Педагогический стаж: </b>{{user.teaching_exp}}
+            <b>Педагогический стаж: </b>{{user && user.teaching_exp}}
           <p/>
         <p class="text_blue_w">
-            <b>Должность: </b>{{user.position}}
+            <b>Должность: </b>{{user && user.position}}
         <p/>
         <p class="text_blue_w">
-          <b>Категория: </b>{{user.category}}
+          <b>Категория: </b>{{user && user.category}}
         <p/>
         <p class="text_blue_w">
           <b>Уровень компетентности: </b>
@@ -67,7 +67,7 @@ export default {
 
 
 <style scoped lang="scss">
-@import '../scss/colors.scss';
+@import '../scss/colors';
 
 .wrapper{
   //padding: 140px 500px 80px 700px;
@@ -102,6 +102,7 @@ export default {
 }
 
 .name{
+  font-size: 20px;
   font-weight: 700;
   padding-top: 15px;
   padding-left: 20px;
@@ -122,7 +123,9 @@ export default {
 }
 
 .profile_text{
-  padding-top: 25px;
+  padding-left: 25px;
+  padding-top: 5px;
+  font-size: 18px;
 }
 
 .text_blue_w{
