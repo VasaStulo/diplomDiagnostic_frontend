@@ -7,7 +7,7 @@ import UserProfilePage from "@/pages/UserProfilePage";
 import DescriptionDiagnosticPage from "@/pages/DescriptionDiagnosticPage";
 import SelectionDiagnosticPage from "@/pages/SelectionDiagnosticPage";
 import MainDiagnosticPage from "@/pages/MainDiagnosticPage";
-
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -52,6 +52,14 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+})
+
+router.beforeEach((to, from, next)=>{
+  const isAuth = store.getters['isAuth'];
+  if(!['/', '/enter', '/login'].includes(to.path) && !isAuth){
+    return next('/enter');
+  }
+  return next();
 })
 
 export default router

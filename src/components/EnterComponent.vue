@@ -87,9 +87,12 @@
   }
 }
   .window_auth {
+    padding-right: 40px;
+    padding-left: 40px;
     background-color: white;
     height: 60vh;
     text-align: center;
+
     border-radius: 20px;
     box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.15);
   }

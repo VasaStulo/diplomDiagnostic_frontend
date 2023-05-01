@@ -4,7 +4,16 @@ export default{
         state[field]=value;
     },
 
-    NEXT_STEP(state){
+    SET_ANSWER_VALUE(state, value){
+        state.answers[state.currentStep] = value;
         state.currentStep++;
+    },
+
+    CLEAR_STATE(state){
+        state.typeOfDiagnostic = '';
+        state.currentStep = 0;
+        state.summaryStep = 0;
+        state.questions = [];
+        state.answers = [];
     }
 }

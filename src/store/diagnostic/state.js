@@ -1,5 +1,6 @@
 export default {
-    currentStep: 1,
+    typeOfDiagnostic: '',
+    currentStep: 0,
     summaryStep: 0,
     questions: [],
     answers: [],

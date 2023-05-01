@@ -8,8 +8,18 @@
 
 <script>
 import MainLayout from "@/layout/MainLayout";
+import {mapActions} from "vuex";
 export default {
-  components: {MainLayout}
+  components: {MainLayout},
+  methods: {
+    ...mapActions('auth', ['refreshSession']),
+  },
+  async mounted(){
+    const refreshToken = localStorage.get('refresh_token')
+    if(refreshToken){
+        await this.refreshSession(refreshToken);
+    }
+  }
 }
 </script>
 

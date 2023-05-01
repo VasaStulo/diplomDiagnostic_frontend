@@ -23,7 +23,7 @@ class Api{
 
         async post(url, body) {
             try {
-                const res = await this.axios.post(url, body, {headers: {Authorization: 123}});
+                const res = await this.axios.post(url, body, {headers: {Authorization: `Bearer ${checkToken()}`}});
                 return res;
             } catch (e) {
                 console.log('e', e);

@@ -40,14 +40,16 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 export default {
   name: 'UserProfilePage',
   computed: {
     ...mapState('user',['user']),
     // ...mapACtions('diagnostics',['getQuestions']),
-
 },
+  methods: {
+    ...mapActions('user', ['getResults']),
+  },
   data: () => ({
     menuItems:
         [
@@ -62,6 +64,9 @@ export default {
           },
         ],
       }),
+  async mounted(){
+    await this.getResults();
+  }
 }
 </script>
 

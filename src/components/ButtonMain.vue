@@ -2,7 +2,6 @@
   <v-btn @click="$emit('click', $event)" depressed :class="getClasses" :ripple="false">
     {{ text }}
   </v-btn>
-
 </template>
 
 <script>

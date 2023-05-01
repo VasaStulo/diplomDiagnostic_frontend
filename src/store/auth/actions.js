@@ -7,7 +7,7 @@ export default {
     //state commit контексты приложения
     //dispatch -для вызова action
     //можно было писать store.state, но диструктуризация
-    async toLogin({state, commit, dispatch}){
+    async toLogin({state, commit}){
         try{
             const {email, password} = state.form;
             //деструктуризация
@@ -23,14 +23,22 @@ export default {
             // commit позволит нам вызвать метод commit внутри наших действий
             //{ root: true } НУЖНА ПРИ ОБРАЩЕНИИ К ДРУГОМУ МОДУЛЮ
             commit('user/CHANGE_VALUE_BY_FIELD', {field: 'user', value: a.user_info}, { root: true })
-            dispatch('user/getResults',{}, { root: true })
             // перенаправляем на страницу профиля
             await router.push('/profile')
         }
         catch (e){
             console.log(e)
         }
+    },
 
-
+    // метод для обновления сессии
+    async refreshSession({commit }, refreshFromStorage) {
+        const {data} = await api.post('', {refresh: refreshFromStorage});
+        commit('CHANGE_AUTH', null, { root: true })
+        localStorage.setItem('access_token', data?.data?.access);
+        localStorage.setItem('refresh_token', data?.data?.refresh);
+        const a = jwtDecode(data?.data?.access);
+        commit('user/CHANGE_VALUE_BY_FIELD', {field: 'user', value: a.user_info}, { root: true })
+        await router.push('/profile')
     }
 }

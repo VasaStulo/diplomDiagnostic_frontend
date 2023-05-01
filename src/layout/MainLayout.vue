@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <header class="header">
-      <img v-if="['/', '/enter'].includes($router.currentRoute.path)" class="logo_image" src="../assets/img/logo_w.svg"/>
-      <img v-else class="logo_image" src="../assets/img/logo_b.svg"/>
+      <img v-if="['/', '/enter'].includes($router.currentRoute.path)" class="logo_image" src="../assets/img/logo_w.svg" @click="$router.push('/')"/>
+      <img v-else class="logo_image" src="../assets/img/logo_b.svg" @click="$router.push('/')" />
       <router-link
           :style="['/', '/enter'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
           class="menu_item"
@@ -14,10 +14,11 @@
             class="menu_item_left"
             to="/enter"
             @click="toAuth">Вход</router-link>
-        <ButtonMain class="ml-10" :type="['/', '/enter'].includes($router.currentRoute.path) ? 'secondary' : 'second'" text="РЕГИСТРАЦИЯ"/>
+        <ButtonMain @click="$router.push('/login')" class="ml-10" :type="['/', '/enter'].includes($router.currentRoute.path) ? 'secondary' : 'second'" text="РЕГИСТРАЦИЯ" />
       </div>
       <div class="change_el" v-if="isAuth">
-        <a class="menu_item_left"  :style="!['/', '/enter'].includes($router.currentRoute.path)
+        <a class="menu_item_left"
+           :style="!['/', '/enter'].includes($router.currentRoute.path)
         ? 'color: #000F24'
         : 'color: #fff'"
         @click="$router.push('/')"
@@ -83,7 +84,7 @@ export default {
       menuItems: [
         //todo передвижение по ссылке, а не по простыне
         {title: 'Главная', link: '/'},
-        {title: 'О проекте', link: '/'},
+        {title: 'О проекте', link: "#about"},
         {title: 'Услуги', link: '/'},
         {title: 'Контакты', link: '/'},
         {title: 'Диагностика', link: '/diagnostic-preview'}
@@ -143,7 +144,7 @@ export default {
   margin-left: 42px;
 }
 .v-footer{
-  background: map-get($blue, 'dark');
+  background-color:#2F3C50;
   flex: 0 0 auto;
 }
 </style>
