@@ -14,7 +14,7 @@
       <p class="font-weight-medium mb-6">
         На данный момент вы не прошли ни одной диагностики
       </p>
-      <ButtonMain text="Перейти к диагностике" class="ml-8"/>
+      <ButtonMain @click="$router.push('/diagnostic-preview')" text="Перейти к диагностике" class="ml-8"/>
     </div>
   </div>
 </template>
