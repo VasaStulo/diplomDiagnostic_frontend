@@ -63,11 +63,11 @@ export default {
   width: 455px;
   height: 420px;
   padding: 10px 30px 0;
-  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
   background-color: #fff;
   &:hover{
-    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
    }
 }
 

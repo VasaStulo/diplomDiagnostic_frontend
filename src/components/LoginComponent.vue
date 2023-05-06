@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="inputs">
-      <InputText @input="CHANGE_VALUE_BY_FIELD({field: 'email', value: $event})" placeholder="E-mail" :value="form.email"/>
-      <InputText @input="CHANGE_VALUE_BY_FIELD({field: 'password', value: $event})" placeholder="Password" :value="form.password"/>
+      <InputText class="mb-6" @input="CHANGE_VALUE_BY_FIELD({form: 'loginForm', field: 'email', value: $event})" placeholder="E-mail" :value="loginForm.email"/>
+      <InputText @input="CHANGE_VALUE_BY_FIELD({form: 'loginForm', field: 'password', value: $event})" placeholder="Password" :value="loginForm.password"/>
     </div>
     <ButtonMain @click="toLogin" text="Войти в аккаунт"/>
   </div>
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     //MAP ФУНКЦИЯ ОБЛЕГЧАЕТ ДОСТУП К СТОРУ
-    ...mapState('auth',['form']),
+    ...mapState('auth',['loginForm']),
   },
 }
 </script>

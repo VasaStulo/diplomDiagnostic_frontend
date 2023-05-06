@@ -1,6 +1,7 @@
 <template>
   <section :class="getClasses">
     <v-text-field
+        hide-details
         :placeholder="placeholder"
         outlined
         v-model="inputValue"
@@ -67,7 +68,7 @@ export default {
   .v-input {
     &::v-deep fieldset {
       border-style: none !important;
-      box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.05);
     }
   }
 }

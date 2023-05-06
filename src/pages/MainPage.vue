@@ -10,7 +10,7 @@
      <ButtonMain class="offer-btn" text="ПРОЙТИ ДИАГНОСТИКУ" @click="$router.push('/enter')"/>
     </div>
 
-    <div id="about" class="about_section">
+    <div ref="about" id="about" class="about_section">
       <p class="title_about">О ПРОЕКТЕ</p>
       <p class="text_about">Тьюторский центр обеспечивает сопровождение непрерывного педагогического<br/> образования. Отправной точкой сопровождения является осознание педагогом<br/> своих профессиональных потребностей. Данный ресурс позволяет педагогу сделать<br/> шаг в профессиональном развитии. </p>
       <div class="about_section-images">
@@ -40,7 +40,7 @@
         ></v-img>
     </div>
     </div>
-    <div class="services_section">
+    <div ref="service" id="service" class="services_section">
       <div class="service">
         <p class="title_about">УСЛУГИ</p>
         <p class="text_about_med">Тьюторский центр оказывает следующие услуги</p>
@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <div class="contacts">
+    <div ref="contacts" is="contacts" class="contacts">
       <div class="content_contact">
       <p class="title_contacts">КОНТАКТЫ</p>
       <hr class="hr_serv"/>
@@ -80,7 +80,9 @@
   import ButtonMain from "@/components/ButtonMain";
   export default {
     name: 'MainPage',
-    data: () => ({servicesItems:
+    data() {
+      return {
+        servicesItems:
           [
               {
                 title: 'Конструирование индивидуальных образовательных маршрутов педагогов на основе данных диагностики профессиональной компетентности'
@@ -100,28 +102,41 @@
            {
 
                 title: 'Подготовка и сопровождение муниципальных тьюторских команд профессионального развития педагога'},
-          ]}),
+          ],
+      hash: this.$route.hash,
+    }},
     components: {ButtonMain},
+    mounted() {
+      this.$nextTick(function () {
+        if (this.hash) {
+          const refName = this.hash.replace('#', '')
+          this.scrollToAnchorPoint(refName)
+        }
+      })
+    },
+    methods: {
+      scrollToAnchorPoint(refName) {
+        const el = this.$refs[refName]
+        el.scrollIntoView({ behavior: 'smooth' })
+      },
+
+    },
   }
 </script>
 <style scoped lang="scss">
 @import '../scss/colors';
-.wrapper{
-  //position: absolute;
-}
 .offer{
   background-image: url("../assets/img/offer.png");
   background-size: cover;
   width: 100%;
-  position: relative;
-  top: -100px;
-  z-index: 2;
-  height: 100vh;
+  //position: absolute;
+  //top: 0;
+  //z-index: 2;
+  //height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 0 120px;
   align-items: flex-end;
-
 }
 
 .offer_main_text{

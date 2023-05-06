@@ -9,7 +9,7 @@ export default {
     //можно было писать store.state, но диструктуризация
     async toLogin({state, commit}){
         try{
-            const {email, password} = state.form;
+            const {email, password} = state.loginForm;
             //деструктуризация
             const {data, status} = await api.post('user/login', {email, password});
             if (!data?.data?.access || status !== 201 ){
@@ -31,6 +31,9 @@ export default {
         }
     },
 
+    async toRegister({state}){
+        console.log(state.registrationForm)
+    },
     // метод для обновления сессии
     async refreshSession({commit }, refreshFromStorage) {
         const {data} = await api.post('', {refresh: refreshFromStorage});

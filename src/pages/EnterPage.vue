@@ -34,7 +34,6 @@
     },
     methods: {
       changeTab(index) {
-        console.log(index)
         this.currentTab = index;
       }
     }
@@ -43,8 +42,11 @@
 
 <style scoped lang="scss">
 .wrapper {
-  height: 100vh;
-  position: absolute;
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   z-index: 2;
   background-image: url("../assets/img/hands.png");
   background-position: center;
@@ -52,18 +54,14 @@
 }
 
 .window_auth {
-  padding-right: 40px;
-  padding-left: 40px;
+  padding: 40px;
   background-color: white;
-  height: 60vh;
   text-align: center;
-
   border-radius: 20px;
   box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .title {
-  margin-top: 40px;
   font-weight: 500;
   font-size: 36px !important;
 }

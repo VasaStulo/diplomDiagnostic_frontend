@@ -6,7 +6,10 @@
       <router-link
           :style="['/', '/enter'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
           class="menu_item"
-          v-for="item in menuItems"  :key="item.title" :to="item.link">{{ item.title }}
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.to">
+        {{ item.title }}
       </router-link>
       <div class="change_el" v-if="!isAuth">
         <router-link
@@ -68,31 +71,34 @@ export default {
   computed:{
     ...mapGetters(['isAuth']),
   },
+
   methods: {
     ...mapMutations(['CHANGE_AUTH']),
-    toRegister(){
-      // this.CHANGE_AUTH();
-      this.$router.push('/enter');
-    },
     toAuth(){
-      // this.CHANGE_AUTH();
-      this.$router.push('/login');
+      this.$router.push('/enter');
     }
+
   },
 
   data(){
-    return{
-
+    return {
       menuItems: [
         //todo передвижение по ссылке, а не по простыне
-        {title: 'Главная', link: '/'},
-        {title: 'О проекте', link: "#about"},
-        {title: 'Услуги', link: '/'},
-        {title: 'Контакты', link: '/'},
-        {title: 'Диагностика', link: '/diagnostic-preview'}
+        {title: 'Главная', to: '/'},
+        {title: 'О проекте', to: {
+            name: 'MainPage',
+            hash: '#about'}},
+        {title: 'Услуги', to: {
+            name: 'MainPage',
+            hash: '#service'}},
+        {title: 'Контакты', to: {
+            name: 'MainPage',
+            hash: '#contacts'}},
+        {title: 'Диагностика', to: '/diagnostic-preview'}
       ]
     }
-  }
+  },
+
 }
 </script>
 

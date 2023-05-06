@@ -85,7 +85,7 @@ export default {
   width: 50vh;
   text-align: center;
   border-radius: 20px;
-  box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
 }
 
 .window_data{
@@ -98,7 +98,8 @@ export default {
   width: 50vh;
   text-align: center;
   border-radius: 20px;
-  box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+
 }
 
 .name{
