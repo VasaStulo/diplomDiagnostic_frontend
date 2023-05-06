@@ -69,6 +69,7 @@ export default {
   width: 100vw;
   height: 100vh;
   z-index: 10;
+  top: 0;
   position: fixed;
   padding: 50px 122px 20px;
 }

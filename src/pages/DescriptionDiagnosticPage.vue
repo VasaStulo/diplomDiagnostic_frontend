@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .wrapper{
   padding-left: 20px;
-  padding-top: 150px;
+  padding-top: 50px;
   padding-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

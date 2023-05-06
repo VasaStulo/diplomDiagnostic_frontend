@@ -4,4 +4,8 @@ export default {
     summaryStep: 0,
     questions: [],
     answers: [],
+
+    // тут хранятся вопросы
+    standardQuestions: [],
+    dppshQuestions: [],
 }

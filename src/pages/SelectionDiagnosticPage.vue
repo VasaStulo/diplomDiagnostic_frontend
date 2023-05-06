@@ -27,7 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper{
-  padding-top: 155px;
+  padding-top: 50px;
   padding-left: 150px;
   display: flex;
 }

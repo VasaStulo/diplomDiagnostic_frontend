@@ -21,7 +21,7 @@
 import InputText from "@/components/InputText";
 
 export default {
-  name: "LoginUser",
+  name: "RegistrationComponent",
   components: {InputText},
 
 }

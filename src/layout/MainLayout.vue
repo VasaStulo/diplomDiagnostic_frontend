@@ -25,7 +25,9 @@
         >
           Выход
         </a>
-        <v-avatar class="ava" :color="['/', '/enter'].includes($router.currentRoute.path) ? '#fff' : '#000F24'">
+        <v-avatar
+            @click="$router.push('/profile')"
+            class="ava" :color="['/', '/enter'].includes($router.currentRoute.path) ? '#fff' : '#000F24'">
           <v-icon :dark="!['/', '/enter'].includes($router.currentRoute.path)">
             mdi-account-circle
           </v-icon>
@@ -108,14 +110,14 @@ export default {
 }
 
 .header{
+  z-index: 3;
   margin-top: 10px;
   display: flex;
+  background: transparent;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  position: absolute;
   width: 100%;
-  top: 0;
 }
 .logo_image{
   margin-top: 30px;
@@ -141,6 +143,7 @@ export default {
   margin-left: 190px;
 }
 .ava{
+  cursor: pointer;
   margin-left: 42px;
 }
 .v-footer{

@@ -1,70 +1,73 @@
 <template>
-  <div class="wrapper">
-    <div class="profile">
-      <div class="window_profile">
-        <div class="name_line">
-          <img
-              class="ava"
-              src="../assets/img/ava.svg"
-          >
-          <p class="name">{{user && user.name.split(' ')[0]}} {{user && user.name.split(' ')[1]}}</p>
-        </div>
-        <div class="profile_text">
-          <div v-for="(item) in menuItems" :key="item.item">
+  <v-container fluid class="profile-page">
+    <v-row no-gutters>
+      <v-col md="4" class="profile-column">
+        <div class="window_profile">
+          <div class="name_line">
+            <img
+                class="ava"
+                src="../assets/img/ava.svg"
+            >
+            <p class="name">{{user && user.name.split(' ')[0]}} {{user && user.name.split(' ')[1]}}</p>
+          </div>
+          <div class="profile_text">
             <p class="text_profile">
-              {{item.item}}
+              <router-link to="/diagnostic-preview"> Пройти  диагностику </router-link>
             <p/>
+            <div v-for="(item, index) in menuTabs" :key="item.item">
+              <p @click="changeTab(index)" :class="['text_profile', {active_tab: index === currentTab}]">
+                {{item}}
+              <p/>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="window_data">
+        <div class="window_data">
           <p class="text_blue_w">
             <b>Педагогический стаж: </b>{{user && user.teaching_exp}}
           <p/>
-        <p class="text_blue_w">
-            <b>Должность: </b>{{user && user.position}}
-        <p/>
-        <p class="text_blue_w">
-          <b>Категория: </b>{{user && user.category}}
-        <p/>
-        <p class="text_blue_w">
-          <b>Уровень компетентности: </b>
-        <p/>
-      </div>
-    </div>
-
-    <div class="result">
-      <h2 class="title_res">Мои результаты</h2>
-    </div>
-  </div>
+          <p class="text_blue_w">
+            <b>Должность: </b>{{user && user.position.toLowerCase()}}
+          <p/>
+          <p class="text_blue_w">
+            <b>Категория: </b>{{user && user.category.toLowerCase()}}
+          <p/>
+          <p class="text_blue_w">
+            <b>Уровень компетентности: </b>{{competence || 'неизвестен'}}
+          <p/>
+        </div>
+      </v-col>
+      <v-col>
+        <MyResults v-if="currentTab === 0"/>
+        <MyRecommendations v-else/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import {mapActions, mapState} from "vuex";
+import MyResults from "@/components/MyResults";
+import MyRecommendations from "@/components/MyRecommendations";
 export default {
   name: 'UserProfilePage',
   computed: {
-    ...mapState('user',['user']),
-    // ...mapACtions('diagnostics',['getQuestions']),
+    ...mapState('user',['user', 'competence']),
 },
+  components: {MyResults, MyRecommendations},
   methods: {
     ...mapActions('user', ['getResults']),
+    ...mapActions('diagnostic', ['setAllQuestions']),
+    changeTab(tab){
+      this.currentTab = tab;
+    }
   },
   data: () => ({
-    menuItems:
-        [
-          {
-            item: 'Пройти  диагностику'
-          },
-          {
-            item: 'Мои результаты'
-          },
-          {
-            item: 'Поддержка'
-          },
-        ],
+    currentTab: 0,
+    menuTabs:
+        ['Мои результаты', 'Рекомендации']
       }),
   async mounted(){
+    await this.setAllQuestions();
     await this.getResults();
   }
 }
@@ -73,17 +76,10 @@ export default {
 
 <style scoped lang="scss">
 @import '../scss/colors';
-
-.wrapper{
-  //padding: 140px 500px 80px 700px;
-  color: #070034;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.profile-page{
+  padding: 40px 40px;
 }
-
 .window_profile {
-  margin-top: 135px;
-  margin-left: 120px;
   background-color: white;
   height: 35vh;
   width: 50vh;
@@ -94,7 +90,6 @@ export default {
 
 .window_data{
   margin-top: 30px;
-  margin-left: 120px;
   margin-bottom: 60px;
   padding-left: 20px;
   padding-top: 30px;
@@ -107,7 +102,7 @@ export default {
 }
 
 .name{
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   padding-top: 15px;
   padding-left: 20px;
@@ -125,6 +120,17 @@ export default {
 .text_profile{
   padding-left: 70px;
   text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.text_profile a{
+  color: #000;
+}
+
+.active_tab{
+  font-weight: 500;
+  color: #0968AD;
 }
 
 .profile_text{
@@ -135,15 +141,6 @@ export default {
 
 .text_blue_w{
   text-align: left;
-}
-
-.result{
-  margin-top: 135px;
-}
-
-.title_res{
-  font-size: 36px;
-  font-weight: 500;
 }
 
 </style>

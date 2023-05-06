@@ -1,8 +1,9 @@
 <template>
   <v-btn
-      :disabled="loading"
+      :ripple="false"
       class="ma-1"
       color="grey"
+      @click="$emit('click')"
       plain
   >
     {{text}}

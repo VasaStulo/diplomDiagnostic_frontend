@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainPage from "@/pages/MainPage";
-import EnterComponent from "@/components/EnterComponent";
-import LoginUser from "@/components/LoginUser";
+import EnterPage from "@/pages/EnterPage";
 import UserProfilePage from "@/pages/UserProfilePage";
 import DescriptionDiagnosticPage from "@/pages/DescriptionDiagnosticPage";
 import SelectionDiagnosticPage from "@/pages/SelectionDiagnosticPage";
@@ -19,13 +18,8 @@ const routes = [
   },
   {
     path: '/enter',
-    name: 'EnterComponent',
-    component: EnterComponent
-  },
-  {
-    path: '/login',
-    name: 'LoginUser',
-    component: LoginUser
+    name: 'EnterPage',
+    component: EnterPage
   },
   {
     path: '/profile',

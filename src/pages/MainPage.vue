@@ -10,7 +10,6 @@
      <ButtonMain class="offer-btn" text="ПРОЙТИ ДИАГНОСТИКУ" @click="$router.push('/enter')"/>
     </div>
 
-
     <div id="about" class="about_section">
       <p class="title_about">О ПРОЕКТЕ</p>
       <p class="text_about">Тьюторский центр обеспечивает сопровождение непрерывного педагогического<br/> образования. Отправной точкой сопровождения является осознание педагогом<br/> своих профессиональных потребностей. Данный ресурс позволяет педагогу сделать<br/> шаг в профессиональном развитии. </p>
@@ -41,7 +40,6 @@
         ></v-img>
     </div>
     </div>
-
     <div class="services_section">
       <div class="service">
         <p class="title_about">УСЛУГИ</p>
@@ -75,7 +73,6 @@
       </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -109,11 +106,16 @@
 </script>
 <style scoped lang="scss">
 @import '../scss/colors';
+.wrapper{
+  //position: absolute;
+}
 .offer{
-
   background-image: url("../assets/img/offer.png");
   background-size: cover;
   width: 100%;
+  position: relative;
+  top: -100px;
+  z-index: 2;
   height: 100vh;
   display: flex;
   flex-direction: column;

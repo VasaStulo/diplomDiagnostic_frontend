@@ -2,30 +2,56 @@ import api from "@/utils/api";
 
 export default {
     async setQuestions(
-        { commit }, typeOfDiagnostic){
+        { commit, dispatch, state }, typeOfDiagnostic){
         commit('CLEAR_STATE');
         commit('CHANGE_VALUE_BY_FIELD', {
             field: 'typeOfDiagnostic',
             value: typeOfDiagnostic,
         });
         try {
-            const {data, status} = await api.get('diagnostic/get_questions', {params: {diagnostic_type: typeOfDiagnostic}});
-            if (status !== 200 ){
-                throw new Error("Ошибка при получении вопросов!")
+            const questions = typeOfDiagnostic === 'standard' ? state.standardQuestions : state.dppshQuestions;
+
+            // если вопросов в state нет - получаем данные с бэкенда
+            if(!questions.length){
+                dispatch('setAllQuestions');
             }
 
             commit('CHANGE_VALUE_BY_FIELD', {
                 field: 'questions',
-                value: data?.data?.questions || []
+                value: questions,
             });
             commit('CHANGE_VALUE_BY_FIELD', {
                 field: 'summaryStep',
-                value: data?.data?.questions.length || 0
+                value: state.questions.length,
             })
         }
         catch (e){
             console.log(e)
         }
+    },
+
+    async setAllQuestions({commit}) {
+        const getQuestionsByType = async (typeOfDiagnostic) => {
+            const {
+                data,
+                status
+            } = await api.get('diagnostic/get_questions', {params: {diagnostic_type: typeOfDiagnostic}});
+            if (status !== 200) {
+                throw new Error("Ошибка при получении вопросов!")
+            }
+
+            return data?.data?.questions || [];
+        }
+        const standardQuestions = await getQuestionsByType('standard');
+        commit('CHANGE_VALUE_BY_FIELD', {
+            field: 'standardQuestions',
+            value: standardQuestions
+        });
+        const dppshQuestions = await getQuestionsByType('dppsh');
+        commit('CHANGE_VALUE_BY_FIELD', {
+            field: 'dppshQuestions',
+            value: dppshQuestions
+        });
     },
 
     async sendAnswers(
