@@ -42,6 +42,9 @@
             <b>Уровень компетентности: </b>{{competence || 'неизвестен'}}
           <p/>
         </div>
+        <div class="details">
+          Узнать подробнее об уровне компетентности и точках роста
+        </div>
       </v-col>
       <v-col>
         <MyResults v-if="currentTab === 0"/>
@@ -163,4 +166,13 @@ export default {
   text-align: left;
 }
 
+.details{
+  border: 1px solid #0968AD;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  color: #0968AD;
+  width: 50vh;
+  text-align: center;
+  padding: 14px 12px;
+}
 </style>

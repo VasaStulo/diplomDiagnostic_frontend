@@ -23,6 +23,7 @@ export default {
             // commit позволит нам вызвать метод commit внутри наших действий
             //{ root: true } НУЖНА ПРИ ОБРАЩЕНИИ К ДРУГОМУ МОДУЛЮ
             commit('user/CHANGE_VALUE_BY_FIELD', {field: 'user', value: a.user_info}, { root: true })
+            commit('CLEAR_STATE');
             // перенаправляем на страницу профиля
             await router.push('/profile')
         }
@@ -54,6 +55,7 @@ export default {
         localStorage.setItem('refresh_token', data?.data?.refresh);
         const a = jwtDecode(data?.data?.access);
         commit('user/CHANGE_VALUE_BY_FIELD', {field: 'user', value: a.user_info}, { root: true })
+        commit('CLEAR_STATE');
         await router.push('/profile')
     },
 

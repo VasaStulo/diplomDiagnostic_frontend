@@ -66,7 +66,7 @@ export default {
   max-width: 1000px;
   :deep(.v-data-table__wrapper){
     background: rgba(255, 255, 255, 0.52);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
   }
   :deep(.theme--light.v-data-table){
@@ -90,6 +90,6 @@ td{
   font-size: 16px !important;
   line-height: 20px;
   color: #000000 !important;
-  //padding: 25px 25px !important;
+  padding: 20px 15px !important;
 }
 </style>

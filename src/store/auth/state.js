@@ -23,5 +23,4 @@ export default {
         district: ['Ярик', 'НЕКРАСОВО'],
         typeOfArea: [123],
     },
-    accessToken:''
 }
