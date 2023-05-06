@@ -35,8 +35,12 @@
     methods: {
       changeTab(index) {
         this.currentTab = index;
+        this.$router.replace(`/${index === 1 ? 'registration' : 'login'}`)
       }
-    }
+    },
+    mounted(){
+      this.currentTab = this.$route.params.type === 'registration' ? 1 : 0;
+    },
   }
 </script>
 

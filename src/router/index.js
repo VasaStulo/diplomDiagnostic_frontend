@@ -17,7 +17,7 @@ const routes = [
     component: MainPage,
   },
   {
-    path: '/enter',
+    path: '/:type',
     name: 'EnterPage',
     component: EnterPage
   },
@@ -50,8 +50,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=>{
   const isAuth = store.getters['isAuth'];
-  if(!['/', '/enter', '/login'].includes(to.path) && !isAuth){
-    return next('/enter');
+  if(!['/', '/registration', '/login'].includes(to.path) && !isAuth){
+    return next('/login');
   }
   return next();
 })

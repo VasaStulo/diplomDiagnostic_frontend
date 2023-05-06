@@ -9,14 +9,13 @@
       </div>
      <ButtonMain class="offer-btn" text="ПРОЙТИ ДИАГНОСТИКУ" @click="$router.push('/enter')"/>
     </div>
-
     <div ref="about" id="about" class="about_section">
       <p class="title_about">О ПРОЕКТЕ</p>
       <p class="text_about">Тьюторский центр обеспечивает сопровождение непрерывного педагогического<br/> образования. Отправной точкой сопровождения является осознание педагогом<br/> своих профессиональных потребностей. Данный ресурс позволяет педагогу сделать<br/> шаг в профессиональном развитии. </p>
       <div class="about_section-images">
         <v-img
             class="ellipse_big"
-          src="../assets/img/ellipse_big.png"
+            src="../assets/img/ellipse_big.png"
         ></v-img>
         <v-img
             class="ellipse_med"
@@ -38,7 +37,7 @@
             class="about_section-teacher ellipse_teacher_three"
             src="../assets/img/ellipse_teacher_three.png"
         ></v-img>
-    </div>
+      </div>
     </div>
     <div ref="service" id="service" class="services_section">
       <div class="service">
@@ -52,8 +51,8 @@
                 :src="require(`../assets/img/icons_service/icon_${index+1}.svg`)"
             >
             <p class="text_serv">
-            {{item.title}}
-              <p/>
+              {{item.title}}
+            <p/>
           </div>
         </div>
       </div>
@@ -61,16 +60,16 @@
 
     <div ref="contacts" is="contacts" class="contacts">
       <div class="content_contact">
-      <p class="title_contacts">КОНТАКТЫ</p>
-      <hr class="hr_serv"/>
-      <hr class="hr_contacts"/>
-      <div class="contact_text">
-        <p class="text_contact">Руководитель проекта: Тихомирова Ольга Вячеславовна</p>
-        <p class="text_contact"> Написать на почту:
-          <a class="text_contact" href="mailto:ask@tutor-in@yandex.ru"> tutor-in@yandex.ru </a>
-        </p>
-        <ButtonMain class="btn_contact" text="ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ К ТЬЮТОРУ"/>
-      </div>
+        <p class="title_contacts">КОНТАКТЫ</p>
+        <hr class="hr_serv"/>
+        <hr class="hr_contacts"/>
+        <div class="contact_text">
+          <p class="text_contact">Руководитель проекта: Тихомирова Ольга Вячеславовна</p>
+          <p class="text_contact"> Написать на почту:
+            <a class="text_contact" href="mailto:ask@tutor-in@yandex.ru"> tutor-in@yandex.ru </a>
+          </p>
+          <ButtonMain class="btn_contact" text="ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ К ТЬЮТОРУ"/>
+        </div>
       </div>
     </div>
   </div>
@@ -119,7 +118,6 @@
         const el = this.$refs[refName]
         el.scrollIntoView({ behavior: 'smooth' })
       },
-
     },
   }
 </script>
@@ -129,13 +127,9 @@
   background-image: url("../assets/img/offer.png");
   background-size: cover;
   width: 100%;
-  //position: absolute;
-  //top: 0;
-  //z-index: 2;
-  //height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 0 120px;
+  padding: 0 120px 40px;
   align-items: flex-end;
 }
 

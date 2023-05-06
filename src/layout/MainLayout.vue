@@ -1,42 +1,51 @@
 <template>
   <div class="wrapper">
-    <header class="header">
-      <img v-if="['/', '/enter'].includes($router.currentRoute.path)" class="logo_image" src="../assets/img/logo_w.svg" @click="$router.push('/')"/>
-      <img v-else class="logo_image" src="../assets/img/logo_b.svg" @click="$router.push('/')" />
-      <router-link
-          :style="['/', '/enter'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
-          class="menu_item"
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.to">
-        {{ item.title }}
-      </router-link>
-      <div class="change_el" v-if="!isAuth">
+    <header class="header"
+            :style="['/', '/login', '/registration'].includes($router.currentRoute.path) ? 'position: absolute; top: 0' : '' ">
+        <img v-if="['/', '/login', '/registration'].includes($router.currentRoute.path)" class="logo_image" src="../assets/img/logo_w.svg" @click="$router.push('/')"/>
+        <img v-else class="logo_image" src="../assets/img/logo_b.svg" @click="$router.push('/')" />
         <router-link
-            :style="['/', '/enter'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
-            class="menu_item_left"
-            to="/enter"
-            @click="toAuth">Вход</router-link>
-        <ButtonMain @click="$router.push('/login')" class="ml-10" :type="['/', '/enter'].includes($router.currentRoute.path) ? 'secondary' : 'second'" text="РЕГИСТРАЦИЯ" />
-      </div>
-      <div class="change_el" v-if="isAuth">
-        <a class="menu_item_left"
-           :style="!['/', '/enter'].includes($router.currentRoute.path)
+            :style="['/', '/login', '/registration'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
+            class="menu_item"
+            v-for="item in menuItems"
+            :key="item.title"
+            :to="item.to">
+          {{ item.title }}
+        </router-link>
+        <div class="change_el" v-if="!isAuth">
+          <router-link
+              :style="['/', '/login', '/registration'].includes($router.currentRoute.path) ? 'color: #fff' : 'color: #000F24'"
+              class="menu_item_left"
+              v-show="!['/login', '/registration'].includes($router.currentRoute.path)"
+              to="/login"
+              @click="toAuth">Вход</router-link>
+          <ButtonMain
+              @click="$router.push('/registration')"
+              class="ml-10"
+              v-show="!['/login', '/registration'].includes($router.currentRoute.path)"
+              :type="['/', '/login', '/registration'].includes($router.currentRoute.path)
+              ? 'secondary'
+              : 'second'"
+              text="РЕГИСТРАЦИЯ" />
+        </div>
+        <div class="change_el" v-if="isAuth">
+          <a class="menu_item_left"
+             :style="!['/', '/login', '/registration'].includes($router.currentRoute.path)
         ? 'color: #000F24'
         : 'color: #fff'"
-        @click="$router.push('/')"
-        >
-          Выход
-        </a>
-        <v-avatar
-            @click="$router.push('/profile')"
-            class="ava" :color="['/', '/enter'].includes($router.currentRoute.path) ? '#fff' : '#000F24'">
-          <v-icon :dark="!['/', '/enter'].includes($router.currentRoute.path)">
-            mdi-account-circle
-          </v-icon>
-        </v-avatar>
-      </div>
-    </header>
+             @click="$router.push('/')"
+          >
+            Выход
+          </a>
+          <v-avatar
+              @click="$router.push('/profile')"
+              class="ava" :color="['/', '/login', '/registration'].includes($router.currentRoute.path) ? '#fff' : '#000F24'">
+            <v-icon :dark="!['/', '/login', '/registration'].includes($router.currentRoute.path)">
+              mdi-account-circle
+            </v-icon>
+          </v-avatar>
+        </div>
+      </header>
     <main class="main">
       <router-view/>
     </main>
@@ -75,7 +84,7 @@ export default {
   methods: {
     ...mapMutations(['CHANGE_AUTH']),
     toAuth(){
-      this.$router.push('/enter');
+      this.$router.push('/login');
     }
 
   },
@@ -114,10 +123,9 @@ export default {
   height: 100%;
   background-color: #F0F0F0;
 }
-
 .header{
   z-index: 3;
-  margin-top: 10px;
+  padding-top: 10px;
   display: flex;
   background: transparent;
   flex-wrap: wrap;
@@ -128,6 +136,7 @@ export default {
 .logo_image{
   margin-top: 30px;
   margin-right: 42px;
+  cursor: pointer;
 }
 .menu_item {
   margin-top: 30px;
