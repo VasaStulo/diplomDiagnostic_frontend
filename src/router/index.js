@@ -17,11 +17,6 @@ const routes = [
     component: MainPage,
   },
   {
-    path: '/:type',
-    name: 'EnterPage',
-    component: EnterPage
-  },
-  {
     path: '/profile',
     name: 'UserProfilePage',
     component: UserProfilePage
@@ -39,6 +34,11 @@ const routes = [
   {
     path: '/diagnostic/:type',
     component: MainDiagnosticPage,
+  },
+  {
+    path: '/:type',
+    name: 'EnterPage',
+    component: EnterPage
   },
 ]
 

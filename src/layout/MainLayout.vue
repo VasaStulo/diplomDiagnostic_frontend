@@ -33,7 +33,7 @@
              :style="!['/', '/login', '/registration'].includes($router.currentRoute.path)
         ? 'color: #000F24'
         : 'color: #fff'"
-             @click="$router.push('/')"
+             @click="logout"
           >
             Выход
           </a>
@@ -68,7 +68,7 @@
 
 
 <script>
-import {mapGetters, mapMutations} from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 import ButtonMain from "@/components/ButtonMain";
 export default {
   name: 'MainLayout',
@@ -83,6 +83,7 @@ export default {
 
   methods: {
     ...mapMutations(['CHANGE_AUTH']),
+    ...mapActions('auth', ['logout']),
     toAuth(){
       this.$router.push('/login');
     }

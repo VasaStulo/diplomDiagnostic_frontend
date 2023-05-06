@@ -21,7 +21,7 @@ export default {
         post: ['Президент'],
         region: ['МОСКВА-СТОЛИЦА'],
         district: ['Ярик', 'НЕКРАСОВО'],
-        typeOfArea: [],
+        typeOfArea: [123],
     },
     accessToken:''
 }

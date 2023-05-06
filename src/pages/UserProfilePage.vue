@@ -14,11 +14,18 @@
             <p class="text_profile">
               <router-link to="/diagnostic-preview"> Пройти  диагностику </router-link>
             <p/>
-            <div v-for="(item, index) in menuTabs" :key="item.item">
-              <p @click="changeTab(index)" :class="['text_profile', {active_tab: index === currentTab}]">
-                {{item}}
-              <p/>
-            </div>
+            <p @click="changeTab(0)" :class="['text_profile', {
+              active_tab: currentTab === 0,
+            }]">
+              Мои результаты
+            <p/>
+            <p @click="changeTabRecommendations"
+               :class="['text_profile', {
+              active_tab: currentTab === 1,
+              disabled: disabledResults
+            }]">
+              Рекомендации
+            <p/>
           </div>
         </div>
         <div class="window_data">
@@ -51,7 +58,7 @@ import MyRecommendations from "@/components/MyRecommendations";
 export default {
   name: 'UserProfilePage',
   computed: {
-    ...mapState('user',['user', 'competence']),
+    ...mapState('user',['user', 'competence', 'dppsh' ,'standard']),
 },
   components: {MyResults, MyRecommendations},
   methods: {
@@ -59,16 +66,23 @@ export default {
     ...mapActions('diagnostic', ['setAllQuestions']),
     changeTab(tab){
       this.currentTab = tab;
+    },
+    changeTabRecommendations(){
+      if(!this.disabledResults){
+        this.currentTab = 1;
+      }
     }
   },
   data: () => ({
     currentTab: 0,
-    menuTabs:
-        ['Мои результаты', 'Рекомендации']
-      }),
+    disabledResults: false,
+   }),
   async mounted(){
     await this.setAllQuestions();
     await this.getResults();
+    if(!this.dppsh?.length && !this.standard?.length){
+      this.disabledResults = true;
+    }
   }
 }
 </script>
@@ -131,7 +145,12 @@ export default {
 
 .active_tab{
   font-weight: 500;
-  color: #0968AD;
+}
+
+.disabled{
+  color: #999999 !important;
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
 
 .profile_text{
