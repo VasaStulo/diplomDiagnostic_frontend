@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="profile-page">
-    <v-row no-gutters>
-      <v-col md="4" class="profile-column">
+    <div class="d-flex flex-column flex-md-row">
+      <div class="profile-column mr-6">
         <div class="window_profile">
           <div class="name_line">
             <img
@@ -45,12 +45,12 @@
         <a href="http://test" class="details" target="_blank">
           Узнать подробнее об уровне компетентности и точках роста
         </a>
-      </v-col>
-      <v-col>
+      </div>
+      <div>
         <MyResults v-if="currentTab === 0"/>
         <MyRecommendations v-else/>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </v-container>
 </template>
 

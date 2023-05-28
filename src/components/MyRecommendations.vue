@@ -1,6 +1,6 @@
 <template>
   <div class="recommendation">
-    <div class="d-flex align-center justify-center mb-6">
+    <div class="d-flex flex-sm-column flex-lg-row align-center justify-center mb-6">
       <h2 class="title_res">Рекомендации</h2>
       <ButtonMain class="ml-8" text="Скачать файл" />
     </div>
