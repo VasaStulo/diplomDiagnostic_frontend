@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="!isMobile ? 'display: grid;' : ''">
     <div class="text_method">
       <div class="text_method_main">
         <div>
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="img_diag">
+    <div v-if="!isMobile" class="img_diag">
       <img src="../assets/img/hand.jpg">
     </div>
   </div>
@@ -30,15 +30,17 @@ export default {
       'Вы сможете сохранить рекомендации и cо своими результатами обратиться к тьютору, который поможет Вам составить индивидуальный план профессионального развития, выбрать необходимые образовательные мероприятия. Записаться к тьютору'
  ] }),
   components: {ButtonMain},
+  computed: {
+    isMobile(){
+      return this.$vuetify.breakpoint.width < 1230;
+    },
+  }
 }
 </script>
 
 <style scoped>
 .wrapper{
-  padding-left: 20px;
-  padding-top: 50px;
-  padding-bottom: 100px;
-  display: grid;
+  padding: 50px 30px 100px;
   grid-template-columns: repeat(2, 1fr);
 }
 
