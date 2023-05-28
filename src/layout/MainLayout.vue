@@ -125,6 +125,8 @@ export default {
     },
     changeBurger(){
       this.isBurgerOpen = !this.isBurgerOpen;
+      // блокируем скролл всего body если бургер меню открыто
+      this.$root.$el.parentNode.style.overflow = this.isBurgerOpen ? 'hidden' : ''
     },
 
   },
@@ -133,7 +135,6 @@ export default {
     return {
       isBurgerOpen: false,
       menuItems: [
-        //todo передвижение по ссылке, а не по простыне
         {title: 'Главная', to: '/'},
         {title: 'О проекте', to: {
             name: 'MainPage',

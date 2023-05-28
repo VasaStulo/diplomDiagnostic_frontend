@@ -50,9 +50,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=>{
   const isAuth = store.getters['isAuth'];
-
-  console.log('to.path', to.path)
-  console.log('isAuth', isAuth);
   if(!['/', '/registration', '/login'].includes(to.path) && !isAuth){
     return next('/login');
   }
