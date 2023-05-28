@@ -4,10 +4,14 @@ export default function checkToken(){
     if(!token){
         return '';
     }
-    const decodeToken =  jwtDecode(token);
-    // "и" базовая проверка на существование объекта и переменной в этом объекте
-    if (new Date() > new Date(decodeToken && decodeToken.exp || '')){
-        return token
+    try {
+        const decodeToken =  jwtDecode(token);
+        // "и" базовая проверка на существование объекта и переменной в этом объекте
+        if (new Date() > new Date(decodeToken && decodeToken.exp || '')){
+            return token
+        }
+        return ''
+    }catch (e) {
+        return '';
     }
-    return ''
 }

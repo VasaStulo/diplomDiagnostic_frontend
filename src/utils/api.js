@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import store from '../store'
 import checkToken from "@/utils/checkToken";
 //чтобы дергать сервер и обращаться к нему, обертка над двумя методами гет и пост, которые я использую в экшенах
 class Api{
@@ -10,9 +11,7 @@ class Api{
         }
 
         async get(url, params) {
-
             try {
-
                 const res = await this.axios.get(url, {...params, headers: {Authorization:`Bearer ${checkToken()}` }});
                 return res;
             } catch (e) {

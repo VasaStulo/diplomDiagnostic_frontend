@@ -46,7 +46,7 @@
 
 <style scoped lang="scss">
 .wrapper {
-  padding: 100px 0;
+  padding: 100px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,6 +67,7 @@
 
 .title {
   font-weight: 500;
+  line-height: 1.2;
   font-size: 36px !important;
 }
 

@@ -8,21 +8,25 @@
 
 <script>
 import MainLayout from "@/layout/MainLayout";
-import {mapActions, mapMutations} from "vuex";
+import {mapActions, mapState} from "vuex";
 export default {
   components: {MainLayout},
   methods: {
     ...mapActions('auth', ['refreshSession', 'toLogin']),
-    ...mapMutations('auth', ['CHANGE_VALUE_BY_FIELD']), // TODO: ВЫПИЛИТЬ КОСТЫЛЬ ПОКА НЕТ REFRESH
+  },
+  computed: {
+    ...mapState(['isAuth'])
   },
   async mounted(){
-    // const refreshToken = localStorage.getItem('refresh_token')
-    // this.CHANGE_VALUE_BY_FIELD({field: 'password', value: 'admin',})
-    // this.CHANGE_VALUE_BY_FIELD({field: 'email', value: 'admin',})
-    // await this.toLogin();
-    // if(refreshToken){
-    //     await this.refreshSession(refreshToken);
-    // }
+    const refreshToken = localStorage.getItem('refresh_token')
+    if(refreshToken){
+        await this.refreshSession(refreshToken);
+    }
+
+    if(this.isAuth && ['/registration', '/login'].includes(this.$route.path)){
+      return this.$router.replace('/profile');
+    }
+
   }
 }
 </script>
@@ -70,5 +74,8 @@ nav {
       color: #42b983;
     }
   }
+}
+a{
+  text-decoration: none;
 }
 </style>

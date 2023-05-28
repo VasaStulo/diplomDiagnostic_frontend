@@ -1,9 +1,10 @@
 <template>
   <section :class="getClasses">
     <v-text-field
-        hide-details
         :placeholder="placeholder"
         outlined
+        :error="error"
+        :error-messages="errorMessage"
         v-model="inputValue"
     />
   </section>
@@ -23,7 +24,15 @@ export default {
     value:{
       type: String,
       default: '',
-    }
+    },
+    error: {
+      type: Boolean,
+      default: false,
+    },
+    errorMessage: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     getClasses: function() {
@@ -68,7 +77,7 @@ export default {
   .v-input {
     &::v-deep fieldset {
       border-style: none !important;
-      box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.05);
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
   }
 }

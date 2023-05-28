@@ -1,10 +1,20 @@
 <template>
   <div>
     <div class="inputs">
-      <InputText class="mb-6" @input="CHANGE_VALUE_BY_FIELD({form: 'loginForm', field: 'email', value: $event})" placeholder="E-mail" :value="loginForm.email"/>
-      <InputText @input="CHANGE_VALUE_BY_FIELD({form: 'loginForm', field: 'password', value: $event})" placeholder="Password" :value="loginForm.password"/>
+      <InputText class="mb-1" @input="CHANGE_VALUE_BY_FIELD_LOGIN({field: 'email', value: $event})"
+                 :error="loginFormValid.email"
+                 :error-message="loginFormErrors.email"
+                 placeholder="E-mail"
+                 :value="loginForm.email"/>
+      <InputText
+          @input="CHANGE_VALUE_BY_FIELD_LOGIN({field: 'password', value: $event})"
+          placeholder="Password"
+          :error="loginFormValid.password"
+          :error-message="loginFormErrors.password"
+          :value="loginForm.password"/>
     </div>
-    <ButtonMain @click="toLogin" text="Войти в аккаунт"/>
+    <ButtonMain @click="prepareLogin" text="Войти в аккаунт"/>
+    <p class="error--text mt-1">{{errorLogin}}</p>
   </div>
 </template>
 
@@ -18,18 +28,24 @@ export default {
   name: "LoginComponent",
   components: {InputText, ButtonMain},
   methods:{
-    ...mapMutations('auth',['CHANGE_VALUE_BY_FIELD']),
+    ...mapMutations('auth',['CHANGE_VALUE_BY_FIELD_LOGIN', 'CHECK_VALIDATION_LOGIN']),
     ...mapActions('auth',['toLogin']),
+    async prepareLogin(){
+      this.CHECK_VALIDATION_LOGIN();
+      if(!this.loginInvalid){
+        await this.toLogin();
+      }
+    },
   },
   computed: {
     //MAP ФУНКЦИЯ ОБЛЕГЧАЕТ ДОСТУП К СТОРУ
-    ...mapState('auth',['loginForm']),
+    ...mapState('auth',['loginForm', 'loginInvalid', 'loginFormValid', 'loginFormErrors', 'errorLogin']),
   },
 }
 </script>
 
 <style scoped>
 .inputs {
-  padding: 20px;
+  padding: 20px 20px 10px;
 }
 </style>

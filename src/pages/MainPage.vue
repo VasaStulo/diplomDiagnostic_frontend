@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div ref="contacts" is="contacts" class="contacts">
+    <div ref="contacts" id="contacts" class="contacts">
       <div class="content_contact">
         <p class="title_contacts">КОНТАКТЫ</p>
         <hr class="hr_serv"/>
@@ -134,7 +134,7 @@
 }
 
 .offer_main_text{
-  font-size: 56px;
+  font-size: 62px;
   color: map-get($yellow,'base');
   font-weight: 700;
   margin-top: 180px;
@@ -145,10 +145,14 @@
 }
 .offer_second_text{
   margin-top: 10px;
+  margin-bottom: 30px;
   font-size: 22px;
   line-height: 1.3;
   color: #ffffff;
   text-align: right;
+}
+.offer-btn{
+  margin-bottom: 50px;
 }
 .hr_serv{
   border: 2px solid map-get($yellow,'base');
@@ -163,7 +167,7 @@
 }
 
 .about_section{
-  padding-top: 43px;
+  padding-top: 70px;
   height: 70vh;
   position: relative;
   text-align: center;
@@ -179,8 +183,8 @@
 
 .title_about{
   text-align: center;
-  font-size: 36px !important;
-  font-weight: 500;
+  font-size: 40px !important;
+  font-weight: 600;
 }
 
 .ellipse_big{
@@ -275,9 +279,9 @@
 
 .title_contacts{
   text-align: center;
-  font-size: 36px !important;
+  font-size: 40px !important;
+  font-weight: 600;
   color: map-get($yellow,'base');
-  font-weight: 500;
 }
 
 .text_contact{

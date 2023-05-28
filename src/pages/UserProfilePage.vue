@@ -42,9 +42,9 @@
             <b>Уровень компетентности: </b>{{competence || 'неизвестен'}}
           <p/>
         </div>
-        <div class="details">
+        <a href="http://test" class="details" target="_blank">
           Узнать подробнее об уровне компетентности и точках роста
-        </div>
+        </a>
       </v-col>
       <v-col>
         <MyResults v-if="currentTab === 0"/>
@@ -94,11 +94,11 @@ export default {
 <style scoped lang="scss">
 @import '../scss/colors';
 .profile-page{
-  padding: 40px 40px;
+  padding: 0 40px 40px;
 }
 .window_profile {
   background-color: white;
-  height: 35vh;
+  padding: 30px 20px;
   width: 50vh;
   text-align: center;
   border-radius: 20px;
@@ -107,16 +107,14 @@ export default {
 
 .window_data{
   margin-top: 30px;
-  margin-bottom: 60px;
-  padding-left: 20px;
-  padding-top: 30px;
+  margin-bottom: 30px;
+  padding: 30px 20px;
   background-color: map-get($blue, 'light');
   height: 27vh;
   width: 50vh;
   text-align: center;
   border-radius: 20px;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
-
 }
 
 .name{
@@ -132,11 +130,10 @@ export default {
 }
 .name_line{
   display: flex;
-  padding: 29px 0 0 30px;
 }
 
 .text_profile{
-  padding-left: 70px;
+  padding-left: 44px;
   text-align: left;
   cursor: pointer;
   font-size: 16px;
@@ -167,6 +164,7 @@ export default {
 }
 
 .details{
+  display: block;
   border: 1px solid #0968AD;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
@@ -174,5 +172,6 @@ export default {
   width: 50vh;
   text-align: center;
   padding: 14px 12px;
+
 }
 </style>

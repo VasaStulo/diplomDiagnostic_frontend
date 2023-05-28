@@ -31,11 +31,13 @@
             :key="index"
         >
           <td class="text-left">{{ item.pollPosition }}</td>
-          <td class="text-left" v-html="item.recomendation">
+          <td class="text-left">
+            <span v-html="item.recomendation"/>.
             <a
                 v-if="item.link"
+                target="_blank"
                :href="item.link">
-                Подробнее.
+                Подробнее...
             </a>
           </td>
           <td class="text-left">{{ item.growpoint }}</td>
