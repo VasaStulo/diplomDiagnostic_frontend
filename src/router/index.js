@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainPage from "@/pages/MainPage";
 import EnterPage from "@/pages/EnterPage";
-import UserProfilePage from "@/pages/UserProfilePage";
+import UserResultsPage from "@/pages/UserResultsPage";
+import UserRecommendationsPage from "@/pages/UserRecommendationsPage";
 import DescriptionDiagnosticPage from "@/pages/DescriptionDiagnosticPage";
 import SelectionDiagnosticPage from "@/pages/SelectionDiagnosticPage";
 import MainDiagnosticPage from "@/pages/MainDiagnosticPage";
@@ -17,9 +18,14 @@ const routes = [
     component: MainPage,
   },
   {
-    path: '/profile',
-    name: 'UserProfilePage',
-    component: UserProfilePage
+    path: '/results',
+    name: 'UserResultsPage',
+    component: UserResultsPage
+  },
+  {
+    path: '/recommendations',
+    name: 'UserRecommendationsPage',
+    component: UserRecommendationsPage
   },
   {
     path: '/diagnostic-preview',
@@ -54,7 +60,7 @@ router.beforeEach((to, from, next)=>{
     return next('/login');
   }
   if(isAuth && ['/registration', '/login'].includes(to.path)){
-    return next('/profile');
+    return next('/results');
   }
 
   return next();

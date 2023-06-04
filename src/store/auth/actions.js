@@ -25,12 +25,10 @@ export default {
             commit('user/CHANGE_VALUE_BY_FIELD', {field: 'user', value: a.user_info}, { root: true })
             commit('CLEAR_STATE');
 
-            console.log('data?.data?.refresh_access_in || 6', data?.data?.refresh_access_in || 6)
             timer = setTimeout(()=>dispatch('refreshSession', data?.data?.refresh),
                 (data?.data?.refresh_access_in || 6)*1000)
-            console.log('timerLOGIN', timer)
             // перенаправляем на страницу профиля
-            await router.push('/profile')
+            await router.push('/results')
         }
         catch (e){
             commit('SET_LOGIN_ERROR', 'Пользователя не существует')
@@ -62,7 +60,7 @@ export default {
         const a = jwtDecode(data?.data?.access);
         commit('user/CHANGE_VALUE_BY_FIELD', {field: 'user', value: a.user_info}, { root: true })
         commit('CLEAR_STATE');
-        await router.push('/profile')
+        await router.push('/results')
     },
 
     async getRegisterData({commit}){
@@ -95,17 +93,15 @@ export default {
         clearTimeout(timer)
         timer = null;
         await api.get('user/logout');
-        await router.push('/');
         // чистим local storage
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         commit('CHANGE_AUTH', false, { root: true })
+        await router.push('/');
     },
 
     // метод для обновления сессии
     async refreshSession({ commit, dispatch }, refreshFromStorage) {
-        console.log('timerREFRESH', timer)
-        console.log('ПОПАЛИ В refresh с токеном: ', refreshFromStorage)
         try{
             const {data} = await api.post('user/refresh', {refresh: refreshFromStorage});
             localStorage.setItem('access_token', data?.data?.access);

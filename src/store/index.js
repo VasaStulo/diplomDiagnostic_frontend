@@ -25,7 +25,6 @@ export default new Vuex.Store({
     //фунц-и, которые напрямую изменяют index
     mutations: {
         CHANGE_AUTH(state, auth){
-            console.log(`auth: ${new Date()}`, auth);
             state.isAuth = auth;
         }
     },

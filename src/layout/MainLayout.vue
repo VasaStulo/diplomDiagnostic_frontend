@@ -20,14 +20,21 @@
         <img v-else class="logo_image" src="../assets/img/logo_b.svg" @click="$router.push('/')" />
       </div>
       <div class="pc-header">
-        <router-link
-            :style="isPageWithoutAuth ? 'color: #fff' : 'color: #000F24'"
-            class="menu_item"
-            v-for="item in menuItems"
-            :key="item.title"
-            :to="item.to">
-          {{ item.title }}
-        </router-link>
+        <div
+            v-if="['/login', '/registration'].includes($router.currentRoute.path)"
+            class="account_exit" @click="$router.back()">
+          <v-icon color="#fff" x-medium>mdi-keyboard-backspace</v-icon>
+          Назад
+        </div>
+        <div v-if="!isPageWithoutAuth">
+          <router-link
+              :class="['menu_item', {active_link: $route.path === item.to}]"
+              v-for="item in menuItems"
+              :key="item.title"
+              :to="item.to">
+            {{ item.title }}
+          </router-link>
+        </div>
         <div class="change_el" v-if="!isAuth">
           <router-link
               :style="isPageWithoutAuth ? 'color: #fff' : 'color: #000F24'"
@@ -46,21 +53,28 @@
         </div>
       </div>
       <div class="change_el" v-if="isAuth && !isMobile">
-        <a class="menu_item_left"
-           :style="!isPageWithoutAuth
-      ? 'color: #000F24'
-      : 'color: #fff'"
-           @click="logout()"
-        >
-          Выход
-        </a>
-        <v-avatar
-            @click="$router.push('/profile')"
-            class="ava" :color="isPageWithoutAuth ? '#fff' : '#000F24'">
-          <v-icon :dark="!isPageWithoutAuth">
-            mdi-account-circle
-          </v-icon>
-        </v-avatar>
+        <div class="open_account" @click="changeIsAccountOpen(!isAccountOpen)">
+          {{cutName}}
+          <img class="open_account-icon" src="../assets/img/arrow_down.svg" alt="icon_down">
+        </div>
+        <div v-if="isAccountOpen" class="account_window">
+          <p>
+            <b>Педагогический стаж: </b>{{user && user.teaching_exp}}
+          <p/>
+          <p>
+            <b>Должность: </b>{{user && user.position.toLowerCase()}}
+          <p/>
+          <p>
+            <b>Категория: </b>{{user && user.category.toLowerCase()}}
+          <p/>
+          <p>
+            <b>Уровень компетентности: </b>{{user && user.competence || 'неизвестен'}}
+          <p/>
+          <div class="account_window-logout" @click="toLogout">
+            <v-icon color="#0968AD" x-medium>mdi-logout</v-icon>
+            Выход
+          </div>
+        </div>
       </div>
       <v-btn @click="changeBurger" class="burger-menu" icon :ripple="false" :color="isPageWithoutAuth ? 'white' : '000F24'">
         <v-icon x-large>mdi-view-headline</v-icon>
@@ -88,7 +102,7 @@
 
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapActions, mapGetters, mapState} from "vuex";
 import ButtonMain from "@/components/ButtonMain";
 export default {
   name: 'MainLayout',
@@ -99,19 +113,24 @@ export default {
   //чтобы получать геттеры нам нужны компьютет свойства
   computed:{
     ...mapGetters(['isAuth']),
+    ...mapState('user',['user']),
     isPageWithoutAuth(){
       return ['/', '/login', '/registration'].includes(this.$route.path);
     },
 
+    cutName(){
+      const [surname, name] = this.user?.name.split(' ');
+      return `${surname || 'Неизвестен'} ${name.substr(0,1) || ''}.`
+    },
+
     isMobile(){
-      return this.$vuetify.breakpoint.width < 1230;
+      return this.$vuetify.breakpoint.width < 1300;
     },
     burgerItems(){
       if(this.isAuth){
         return [
           ...this.menuItems,
-          {title: 'Профиль', to: '/profile'},
-          {title: 'Выход', click: this.logout},
+          {title: 'Результаты', to: '/results'},
         ]
       }
       return this.menuItems;
@@ -128,24 +147,26 @@ export default {
       // блокируем скролл всего body если бургер меню открыто
       this.$root.$el.parentNode.style.overflow = this.isBurgerOpen ? 'hidden' : ''
     },
-
+    changeIsAccountOpen(value){
+      console.log('value', value)
+      this.isAccountOpen = value;
+    },
+    async toLogout(){
+      this.isBurgerOpen = false;
+      this.isAccountOpen = false;
+      await this.logout()
+    }
   },
 
   data(){
     return {
       isBurgerOpen: false,
+      isAccountOpen: false,
       menuItems: [
         {title: 'Главная', to: '/'},
-        {title: 'О проекте', to: {
-            name: 'MainPage',
-            hash: '#about'}},
-        {title: 'Услуги', to: {
-            name: 'MainPage',
-            hash: '#service'}},
-        {title: 'Контакты', to: {
-            name: 'MainPage',
-            hash: '#contacts'}},
-        {title: 'Диагностика', to: '/diagnostic-preview'}
+        {title: 'Диагностика', to: '/diagnostic-preview'},
+        {title: 'Мои результаты', to: '/results'},
+        {title: 'Рекомендации', to: '/recommendations'},
       ]
     }
   },
@@ -165,24 +186,34 @@ export default {
   height: 100%;
   background-color: #F0F0F0;
 }
+
 .header{
   z-index: 3;
-  padding: 40px 20px;
+  padding: 40px 120px;
   display: flex;
   background: transparent;
   align-items: center;
-  justify-content: center;
   width: 100%;
+  justify-content: space-between;
   @media(max-width: 1230px) {
     justify-content: space-between;
     padding: 40px 20px;
   }
 }
+.account_exit{
+  color:#fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .logo_image{
   margin-right: 42px;
   cursor: pointer;
+  float: left;
+  padding: 0;
 }
 .menu_item {
+  color: #000F24;
   margin-right: 42px;
   text-transform: uppercase;
 }
@@ -199,6 +230,42 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+.open_account{
+  padding: 5px 10px;
+  background: #D9D9D9;
+  border-radius: 5px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  &-icon{
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
+  }
+  &:hover{
+    background: #c0c0c0;
+  }
+}
+
+.account_window{
+  width: 480px;
+  height: 261px;
+  top: 100px;
+  right: 100px;
+  position: absolute;
+  background: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 32px 45px;
+  &-logout{
+    cursor: pointer;
+    font-weight: 500;
+    line-height: 20px;
+    color: #0968AD;
+  }
+}
 .ava{
   cursor: pointer;
   margin-left: 42px;
@@ -212,6 +279,11 @@ export default {
   @media(max-width: 1230px){
     display: none;
   }
+}
+
+.active_link{
+  font-weight: 600;
+  color: #0968AD;
 }
 .burger-menu{
   display: none;

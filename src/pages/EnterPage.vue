@@ -46,7 +46,7 @@
 
 <style scoped lang="scss">
 .wrapper {
-  padding: 100px 10px;
+  padding: 140px 10px;
   display: flex;
   justify-content: center;
   align-items: center;

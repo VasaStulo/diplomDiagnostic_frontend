@@ -43,17 +43,6 @@
 </template>
 
 <script>
-// нарисовать в дипломе диаграмму состояний, заценят
-/*
-Есть список вопросов
-Некоторые из них помечены флагом «контрольный»
-**
-Если на вопрос с таким флагом, пользак даёт утвердительный ответ, то ему должен быть задан контрольный вопрос
-Затем проверяется правильно ли дан ответ
-**
-Да — в массив ответов записывается 1
-Нет — 0
- */
 import {mapGetters, mapMutations, mapState} from "vuex";
 import ButtonMain from './ButtonMain';
 import CheckboxMain from './CheckboxMain';
@@ -139,7 +128,7 @@ export default {
 .buttons {
   display: flex;
   position: absolute;
-  bottom: 100px; // пока так, если будет много текста - будет наложение, найти другой способ
+  bottom: 100px;
   justify-content: space-between;
   min-width: 500px;
   margin-top: 30px;

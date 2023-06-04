@@ -13,30 +13,30 @@
       <p class="title_about">О ПРОЕКТЕ</p>
       <p class="text_about">Тьюторский центр обеспечивает сопровождение непрерывного педагогического<br/> образования. Отправной точкой сопровождения является осознание педагогом<br/> своих профессиональных потребностей. Данный ресурс позволяет педагогу сделать<br/> шаг в профессиональном развитии. </p>
       <div class="about_section-images">
-        <v-img
+        <img
             class="ellipse_big"
             src="../assets/img/ellipse_big.png"
-        ></v-img>
-        <v-img
+        >
+        <img
             class="ellipse_med"
             src="../assets/img/ellipse_med.png"
-        ></v-img>
-        <v-img
+        >
+        <img
             class="ellipse_med_two"
             src="../assets/img/ellipse_med.png"
-        ></v-img>
-        <v-img
+        >
+        <img
             class="about_section-teacher ellipse_teacher_one"
             src="../assets/img/ellipse_teacher_one.png"
-        ></v-img>
-        <v-img
+        >
+        <img
             class="about_section-teacher ellipse_teacher_two"
             src="../assets/img/ellipse_teacher_two.png"
-        ></v-img>
-        <v-img
+        >
+        <img
             class="about_section-teacher ellipse_teacher_three"
             src="../assets/img/ellipse_teacher_three.png"
-        ></v-img>
+        >
       </div>
     </div>
     <div ref="service" id="service" class="services_section">
@@ -138,6 +138,11 @@
   color: map-get($yellow,'base');
   font-weight: 700;
   margin-top: 180px;
+  -webkit-text-stroke-width: 1px;
+  stroke-width: 1px;
+  stroke: #0968AD;
+  -webkit-text-stroke-color: #0968AD;
+  text-transform: uppercase;
 }
 .offer_text{
   text-align: right;
@@ -175,8 +180,8 @@
     position: absolute;
   }
   &-images{
-    //z-index: -1; TODO: разобраться почему не работает
-    position:absolute;
+    //z-index: -1;
+    position: absolute;
     top:0;
   }
 }

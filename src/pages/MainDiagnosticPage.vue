@@ -11,7 +11,7 @@
         </div>
         <img
             v-if="!isEnd"
-            @click="$router.push('/profile')"
+            @click="$router.push('/results')"
             width="35px"
             height="35px"
             src="../assets/img/close.svg"
@@ -52,7 +52,7 @@ export default {
     ...mapActions('diagnostic', ['setQuestions', 'sendAnswers']),
     async endPoll() {
       await this.sendAnswers();
-      await this.$router.push('/profile');
+      await this.$router.push('/results');
     }
   },
   async mounted() {

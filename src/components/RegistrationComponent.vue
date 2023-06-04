@@ -1,6 +1,6 @@
 <template>
     <div class="registration">
-      <div class="d-flex justify-space-around align-center flex-wrap">
+      <div class="d-flex justify-space-around flex-wrap">
         <div class="d-flex flex-column">
           <p class="theme">О Вас</p>
           <InputText
@@ -91,9 +91,10 @@
                 :error-message="registrationFormErrors.password"
                 :value="registrationForm.password"
                 placeholder="Пароль"/>
+
         </div>
+        <ButtonMain class="mt-10 ml-5" @click="prepareRegister" text="Зарегистрироваться"/>
       </div>
-      <ButtonMain class="mt-10" @click="prepareRegister" text="Зарегистрироваться"/>
     </div>
 </template>
 

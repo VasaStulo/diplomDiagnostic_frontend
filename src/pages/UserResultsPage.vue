@@ -1,6 +1,6 @@
 <template>
   <div class="result">
-    <h2 class="title_res">Мои результаты</h2>
+    <h2 class="title_res mb-6">Мои результаты</h2>
     <div v-if="isDiagnosticComplete">
       <div class="mb-5" v-if="standard.length">
         <p class="subtitle font-weight-medium mb-6">
@@ -14,7 +14,10 @@
         </p>
         <p v-html="dppshText"/>
       </div>
-      <ButtonMain text="Записаться к тьютору" type="second" class="mt-8"/>
+      <div class="d-flex flex-column flex-md-row mt-8">
+        <ButtonMain text="Записаться к тьютору" class="mt-2" type="second"/>
+        <ButtonMain text="Показать рекомендации"  class="mt-2 ml-md-4" @click="$router.push('/recommendations')"/>
+      </div>
     </div>
     <div v-else>
       <p class="font-weight-medium mb-6">
@@ -27,9 +30,9 @@
 
 <script>
 import ButtonMain from "@/components/ButtonMain";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 export default {
-  name: "MyResults",
+  name: "UserResultsPage",
   components: {ButtonMain},
   computed: {
     ...mapState('user', ['standard', 'dppsh']),
@@ -37,7 +40,20 @@ export default {
       return this.standard?.length || this.dppsh?.length;
     },
   },
-  data: ()=>({
+  methods: {
+    ...mapActions('user', ['getResults']),
+    ...mapActions('diagnostic', ['setAllQuestions']),
+  },
+  async mounted(){
+    await this.setAllQuestions();
+    await this.getResults();
+    if(!this.dppsh?.length && !this.standard?.length){
+      this.disabledResults = true;
+    }
+  },
+  data(){
+    return {
+      disabledResults: false,
     dppshText: `
     <b> В когнитивном компоненте: </b> обладание знаниями (пониманием) концепции и стратегии развития допрофессионального образования; необходимыми для реализации допрофессионального образования психологическими знаниями; обладание необходимыми для реализации допрофессионального образования знаниями в области педагогики и андрогогики.
     <br><br><b> В деятельностном компоненте:</b> обладание технологические умениями проектирования и реализации учебного процесса ДППШ; обладание методическими умениями организации учебного процесса на основе подходов и принципов допрофессиональной педагогической подготовки; обладание коммуникативными умениями организации взаимодействия с участниками образовательных отношений ДППШ на основе сотрудничества и взаимопомощи; обладание рефлексивными умениями;
@@ -63,13 +79,18 @@ export default {
       позициями педагога (методиста, диагноста, гуманиста), способность принимать различные педагогические роли
       (мотиватора, фасилитатора, тьютора)
     `
-  })
+  }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .result{
+  padding: 40px 120px;
   text-align: left;
+  @media(max-width: 1230px) {
+    padding: 40px 20px;
+  }
 }
 
 .title_res{

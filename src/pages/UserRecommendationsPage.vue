@@ -1,9 +1,6 @@
 <template>
   <div class="recommendation">
-    <div class="d-flex flex-sm-column flex-lg-row align-center justify-center mb-6">
-      <h2 class="title_res">Рекомендации</h2>
-      <ButtonMain class="ml-8" text="Скачать файл" />
-    </div>
+    <h2 class="title_res mb-6">Рекомендации</h2>
     <v-simple-table
         fixed-header
         height="600px"
@@ -36,8 +33,8 @@
             <a
                 v-if="item.link"
                 target="_blank"
-               :href="item.link">
-                Подробнее...
+                :href="item.link">
+              Подробнее...
             </a>
           </td>
           <td class="text-left">{{ item.growpoint }}</td>
@@ -46,6 +43,10 @@
         </tbody>
       </template>
     </v-simple-table>
+    <div class="d-flex flex-column flex-md-row mt-8">
+      <ButtonMain text="Подробнее о точках роста" type="second" class="mt-2"/>
+      <ButtonMain text="Скачать файл" class="mt-2 ml-md-4" />
+    </div>
   </div>
 </template>
 
@@ -55,7 +56,7 @@
 import ButtonMain from "@/components/ButtonMain";
 import {mapGetters} from "vuex";
 export default {
-  name: "MyRecommendations",
+  name: "UserRecommendationsPage",
   components: {ButtonMain},
   computed: {
     ...mapGetters('user',['recommendations']),
@@ -65,11 +66,15 @@ export default {
 
 <style scoped lang="scss">
 .recommendation{
-  max-width: 1000px;
+  padding: 40px 120px;
+  text-align: left;
+  @media(max-width: 1230px) {
+    padding: 40px 20px;
+  }
   :deep(.v-data-table__wrapper){
     background: rgba(255, 255, 255, 0.52);
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
+    border-radius: 20px 0 0 20px;
   }
   :deep(.theme--light.v-data-table){
     background-color: transparent !important;

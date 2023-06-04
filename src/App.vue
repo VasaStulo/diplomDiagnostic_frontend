@@ -24,7 +24,7 @@ export default {
     }
 
     if(this.isAuth && ['/registration', '/login'].includes(this.$route.path)){
-      return this.$router.replace('/profile');
+      return this.$router.replace('/results');
     }
 
   }
