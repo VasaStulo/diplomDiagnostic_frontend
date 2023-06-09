@@ -44,7 +44,7 @@
       </template>
     </v-simple-table>
     <div class="d-flex flex-column flex-md-row mt-8">
-      <ButtonMain text="Подробнее о точках роста" type="second" class="mt-2"/>
+      <ButtonMain text="Подробнее о точках роста" type="second" link= "" class="mt-2"/>
       <ButtonMain text="Скачать файл" class="mt-2 ml-md-4" />
     </div>
   </div>

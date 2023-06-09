@@ -15,7 +15,7 @@
         <p v-html="dppshText"/>
       </div>
       <div class="d-flex flex-column flex-md-row mt-8">
-        <ButtonMain text="Записаться к тьютору" class="mt-2" type="second"/>
+        <ButtonMain text="Записаться к тьютору" class="mt-2" type="second" link="https://docs.google.com/forms/d/e/1FAIpQLSfek9IOeLy0F-8k5JedLyMbcnRAn6xAFKl-8IUEP8GtHXi4cA/viewform"/>
         <ButtonMain text="Показать рекомендации"  class="mt-2 ml-md-4" @click="$router.push('/recommendations')"/>
       </div>
     </div>

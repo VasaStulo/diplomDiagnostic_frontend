@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="$emit('click', $event)" depressed :class="getClasses" :ripple="false">
+  <v-btn @click="$emit('click', $event)" :href="link" target="_blank" depressed :class="getClasses" :ripple="false">
     {{ text }}
   </v-btn>
 </template>
@@ -15,6 +15,9 @@ export default {
     type:{
       type: String,
       default: 'primary',
+    },
+    link:{
+      type: String,
     }
   },
   computed: {

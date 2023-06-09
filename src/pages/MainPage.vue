@@ -68,7 +68,7 @@
           <p class="text_contact"> Написать на почту:
             <a class="text_contact" href="mailto:ask@tutor-in@yandex.ru"> tutor-in@yandex.ru </a>
           </p>
-          <ButtonMain class="btn_contact" text="ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ К ТЬЮТОРУ"/>
+          <ButtonMain class="btn_contact" link="https://docs.google.com/forms/d/e/1FAIpQLSfek9IOeLy0F-8k5JedLyMbcnRAn6xAFKl-8IUEP8GtHXi4cA/viewform" text="ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ К ТЬЮТОРУ"/>
         </div>
       </div>
     </div>
@@ -180,7 +180,6 @@
     position: absolute;
   }
   &-images{
-    //z-index: -1;
     position: absolute;
     top:0;
   }

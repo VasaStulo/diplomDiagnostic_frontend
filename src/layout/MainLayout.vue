@@ -68,7 +68,7 @@
             <b>Категория: </b>{{user && user.category.toLowerCase()}}
           <p/>
           <p>
-            <b>Уровень компетентности: </b>{{user && user.competence || 'неизвестен'}}
+            <b>Уровень компетентности: </b>{{ competence || 'неизвестен'}}
           <p/>
           <div class="account_window-logout" @click="toLogout">
             <v-icon color="#0968AD" x-medium>mdi-logout</v-icon>
@@ -113,7 +113,7 @@ export default {
   //чтобы получать геттеры нам нужны компьютет свойства
   computed:{
     ...mapGetters(['isAuth']),
-    ...mapState('user',['user']),
+    ...mapState('user',['user', 'competence']),
     isPageWithoutAuth(){
       return ['/', '/login', '/registration'].includes(this.$route.path);
     },
