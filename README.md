@@ -1,4 +1,4 @@
-# diplom_frontend
+## diplom_frontend
 
 ## Project setup
 ```
